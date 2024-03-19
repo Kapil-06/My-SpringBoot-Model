@@ -1,0 +1,213 @@
+/* FooterComponent.css */
+.footer {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f0f0f0;
+  padding: 30px;
+  /* Add other styles as needed */
+}
+
+.column {
+  flex: 1;
+  padding: 10px;
+  /* Add other styles as needed */
+}
+
+.column-title {
+  margin-bottom: 10px;
+  color: #297f54;
+  /* Add other styles as needed */
+}
+
+.join-webinar-form {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  /* Add other styles as needed */
+}
+
+.join-webinar-form input,
+.join-webinar-form button {
+  margin-bottom: 10px;
+  padding-top: 5px;
+  /* Add other styles as needed */
+}
+
+.quick-links {
+  list-style: none;
+  padding: 0;
+  /* Add other styles as needed */
+}
+
+.quick-links li {
+  margin-bottom: 5px;
+  padding-top: 5px;
+  /* Add other styles as needed */
+}
+
+.social-media-links {
+  list-style: none;
+  padding: 0;
+  /* Add other styles as needed */
+}
+
+.social-media-links li {
+  margin-bottom: 5px;
+  /* Add other styles as needed */
+}
+
+.social-media-links i{
+	color: #297f54;
+	font-size: 25px;
+	padding-top: 5px;
+}
+
+.about-paragraph {
+  color: #297f54;
+  /* Add styles for the paragraph */
+}
+
+.company{
+	padding-top: 2rem ;
+	height: 80px;
+	font-size: 1rem;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.05);
+	color: #378B29;
+}
+
+
+
+
+/*.footer{
+	padding: 1rem 10rem;
+	background: white;
+	color: #297f54;
+	font-family: 'Times New Roman', Times, serif;
+	position: relative;
+	position: sticky;
+}
+
+.top{
+	display: flex;
+	align-items: center;
+	text-align: start;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	color: #297f54;
+}
+
+.top h1{
+	margin-bottom: -50px;
+}
+.top i{
+	color: #297f54;
+	font-size: 2rem;
+	margin-left: 1rem;
+}
+
+.social{
+	padding-right: 7rem;
+	margin-bottom: -50px;
+}
+
+.top i:hover{
+	color: black;
+}
+
+.pp{
+	padding-bottom: 20px;
+	padding-top: 30px;
+	font-size:1.5rem ;
+	color: #297f54;
+	padding-left: 65px;
+	text-align: cente;
+}
+
+.cour{
+	margin-top: -10px;
+	justify-content: space-between;
+	list-style: none;
+	flex-direction: column;
+}
+
+.core li{
+	margin-bottom: 15px;
+	list-style: none;
+	font-size: 1.3rem;
+	text-align: center;
+}
+
+.bottom{
+	padding-top: 3rem;
+	text-align: start;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	list-style: none;
+	color: #297f54;
+}
+
+.form{
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+	padding-top: 20px;
+}
+
+.about{
+	padding-top: 1.5rem;
+	font-size: 1.2rem;
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+}
+
+.bottom label{
+	font-size: 1.3rem;
+	padding: 0.3rem 0 0.3rem 0;
+}
+
+.sub{
+	padding-top: 2.5rem;
+	color: black;
+	padding-bottom: 2rem;
+}
+
+.subb{
+	width: 160px;
+	height: 40px;
+	background: black;
+	color: white;
+	border-radius: 13px;
+}
+
+.subb:hover{
+	color: white;
+	background: #297f54;
+}
+
+.company{
+	padding-top: 2rem ;
+	height: 80px;
+	font-size: 1rem;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.05);
+	color: #378B29;
+}
+
+@media screen and (max-width: 850px){
+	.footer{
+		padding: 4rem 2rem;
+	}
+
+	.footer i{
+		margin: 1rem 1rem 0 0;
+	}
+
+	.bottom div{
+		width: 50%;
+	}
+}
+
+*/

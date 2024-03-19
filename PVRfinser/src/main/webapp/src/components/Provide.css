@@ -1,0 +1,30 @@
+.exp{
+	background: white;
+	width: 100%;
+	height: 75vh;
+	z-index: -999;
+	margin-top: -60px;
+    position: relative;
+}
+.provide{
+	padding-top: 115px;
+	font-size: 3rem;
+	text-align: center;
+}
+
+.p1p2{
+	display: flex;
+	flex-direction: row;
+	font-size: 2rem;
+	padding: 50px;
+}
+
+.p1{
+	margin-left: 300px;
+}
+
+.p2{
+	margin-left: 470px;
+}
+
+  

@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ddebbef5.css",
+    "main.js": "/static/js/main.24b6b7db.js",
+    "static/js/787.d49e2140.chunk.js": "/static/js/787.d49e2140.chunk.js",
+    "static/media/adam.jpg": "/static/media/adam.ccb0926b5ea13d93e6b1.jpg",
+    "static/media/kiyo.png": "/static/media/kiyo.e6911e0cbf2c8c2b0887.png",
+    "static/media/a.jpeg": "/static/media/a.dcd62d997773daa6bca0.jpeg",
+    "static/media/c.jpeg": "/static/media/c.f836fef38a6073022b40.jpeg",
+    "static/media/d.jpeg": "/static/media/d.9bb873ee05cf91ca21e3.jpeg",
+    "static/media/rob.png": "/static/media/rob.8d3b8f21107ba42f7e5b.png",
+    "static/media/c1.jpg": "/static/media/c1.78fd88d95920333ee103.jpg",
+    "static/media/tom.jpg": "/static/media/tom.07561a76132c40f9eda1.jpg",
+    "static/media/warren.jpg": "/static/media/warren.18de7c401f5b2fb87f7a.jpg",
+    "static/media/b.jpeg": "/static/media/b.c7d31652b59edd5ac1b0.jpeg",
+    "static/media/logo.jpeg": "/static/media/logo.e10f7b4be836bebc7ea0.jpeg",
+    "index.html": "/index.html",
+    "main.ddebbef5.css.map": "/static/css/main.ddebbef5.css.map",
+    "main.24b6b7db.js.map": "/static/js/main.24b6b7db.js.map",
+    "787.d49e2140.chunk.js.map": "/static/js/787.d49e2140.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ddebbef5.css",
+    "static/js/main.24b6b7db.js"
+  ]
+}

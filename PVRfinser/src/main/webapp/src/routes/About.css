@@ -1,0 +1,361 @@
+.about-page{
+     background-color: #297f54;
+     overflow: hidden;
+ }
+ 
+ .about-heading{
+     align-items: center;
+     justify-about-content: center;
+        margin-left: -50px;
+ }
+ 
+ .about-heading h1{
+     font-size: 50px;
+     color:#fff;
+     text-align: center;
+     margin-top: 105px;
+     margin-bottom: 50px;
+     align-items: center;
+     font-weight: 600;
+ }
+ 
+ .about-container {
+     display: flex;
+     justify-about-content: center;
+     align-items: center;
+     width: 100%;      
+ }
+ 
+ .about-content{
+     flex: 1;
+     width: 600px;
+     text-align: center;
+ }
+ 
+ .about-content h2{
+     font-size: 38px;
+     margin-bottom: 20px;
+     color: #fff;
+ 
+ }
+
+ .about-content p{
+     font-size: 20px;
+     line-height: 1.2;
+     margin-bottom: 40px;
+     color:white;
+ }
+ 
+ .about-content button {
+     display: inline-block;
+     background-color:#fff;
+     color: black;
+     padding:12px 24px ;
+     border-radius: 50px;
+     font-size: 20px;
+     border: none;
+     cursor: pointer;
+     transition:0.3s ease ;
+ }
+ 
+ .about-content button:hover{
+     background-color: black;
+     color: white;
+     transform : scale(1.05);
+ }
+ 
+ .about-image {
+     width: 500px;
+     margin-left: 80px;
+ }
+ 
+ .about-image img{
+     width: 10%;
+     height: auto;
+     border-radius: 10px;
+ }
+
+ img{
+    width: 10%;
+    height: auto;
+    border-radius: 10px;
+
+ }
+
+ @media screen  and (max-width:768px)     {
+     .about-heading
+ h1 {
+         font-size: 36px;
+         margin-top: 26px;
+ 
+     }
+ 
+     .about-page{
+         margin: 0px;
+     }
+     
+     .about-container{
+         width: 100%;
+         flex-direction: column;
+         margin: 0px;
+         padding: 0px 40px;
+     }
+ 
+     .about-content{
+         width: 100%;
+         margin: 35px 0px;
+     }
+ 
+     .about-content h2{
+         font-size: 30px;
+     }
+     .about-content p {
+         font-size: 16px;
+         margin-bottom:20px ;
+     }
+ 
+     .about-content button {
+       font-size: 15px;
+       padding: 8px 16px;
+     } 
+     .about-image img{
+         width: 100%;
+         margin: auto;
+     }
+ 
+ }
+.who h2{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 50px;
+}
+ .mvc{
+     background-color:#fff;
+ }
+ 
+ .mvv-about-container {
+     padding: 0;
+     margin: 0;
+     max-width: 90%;
+     margin: 50px auto 0;
+ }
+ 
+ .mvv-about-container .mvv-block{
+     margin-bottom: 50px;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+ }
+
+ .mvv-block p{
+    color: black;
+ }
+ 
+ .mvv-about-container .mvv-block .about-image {
+     flex: 0 0 auto;
+     width: 400px;
+     overflow:hidden;
+     border-radius: 5px;
+     box-shadow: 0 0 10px 5px rgba(0, 0, 0, .3);
+     line-height: 0;
+ }
+ 
+ .mvv-about-container .mvv-block .about-image img{
+     width: 100%;
+     transition: 1s;
+     transform:scale(1) ;
+ }
+
+ .mvv-about-container .mvv-block .about-image:hover img{
+ 
+     transform: scale(1.05);
+ }
+ 
+ .mvv-about-container .mvv-block .about-content {
+     
+     flex: 0 0 auto;
+     width:calc(100% - 400px) ;
+     box-sizing: border-box;
+     align-self: center;
+ }
+ 
+ .mvv-about-container .mvv-block .about-content h5 {
+     font-weight: 700;
+     font-size: 50px;
+     color: green;
+     margin-bottom: 10px;
+ }
+ 
+ .mvv-about-container .mvv-block .about-content p {
+ 
+     font-size: 20px;
+ 
+ }
+
+ .names{
+    color: #297f54;
+ }
+ 
+ @media screen  and (max-width: 768px) {
+ 
+ 
+     .mvv-about-container .mvv-block:nth-child(odd) .about-image{
+         order: 1;
+     }
+ 
+     .mvv-about-container .mvv-block:nth-child(even) .about-image{
+         order: 2;
+     }
+ 
+     .mvv-about-container .mvv-block:nth-child(odd) .about-content{
+         order: 2;
+         padding-left: 30px;
+     }
+ 
+     .mvv-about-container .mvv-block:nth-child(even) .about-content{
+         order: 1;
+         padding-right: 30px;
+     }
+     
+     
+ }
+ 
+ 
+ 
+ @media screen  and (min-width: 1024px) {
+ 
+     .mvv-about-container .mvv-block:nth-child(odd) .about-image{
+         order: 1;
+     }
+ 
+     .mvv-about-container .mvv-block:nth-child(even) .about-image{
+         order: 2;
+     }
+ 
+     .mvv-about-container .mvv-block:nth-child(odd) .about-content{
+         order: 2;
+         padding-left: 30px;
+     }
+ 
+     .mvv-about-container .mvv-block:nth-child(even) .about-content{
+         order: 1;
+         padding-right: 30px;
+     }
+     
+     
+ }
+ 
+ 
+
+ 
+ .about-row{
+     display: flex;
+     flex-direction:row;
+     padding: 1em 1em;
+     text-align: center;
+ }
+ 
+  .about-column{
+     width: 100%;
+     padding:1em 1em ;
+     display: flex;
+     flex-direction: column;
+}
+ 
+ .about-zero h1 {
+     width: 100%;
+     text-align: center;
+     font-size: 50px;
+     color: black;
+ }
+ 
+ .about-card{
+     box-shadow: 6px 6px 3px;
+     padding: 3.5em 1em;
+     border-radius: 2rem;
+     color:grey;
+     cursor: pointer;
+     background-color: #297f54;
+     transition:0.3s ease;
+ }
+ 
+ .about-card .about-img-container{
+     width: 8em;
+     height: 8em;
+     background-color: #fff;
+     padding: 0.3em;
+     border-radius: 50%;
+     margin: 0 auto 2em auto;
+    
+ }
+ 
+ .about-card img {
+    width: 100%;
+    height: 7.4em;
+    border-radius: 50%;
+ }
+ 
+ .about-card h3 {
+     font-weight: 500;
+     color: #fff;
+ 
+ }
+ 
+ .about-card p {
+     font-weight: 300;
+     text-transform: uppercase;
+     margin: 0.5em 0 2em 0;
+     letter-spacing: 2px;
+     color: #fff;
+ 
+ }
+ .about-icons {
+     width: 50%;
+     min-width: 180px;
+     margin: auto;
+     display: flex;
+     justify-about-content: space-between;
+ }
+ 
+ .about-card a{
+     text-decoration: none;
+     color: white;
+     font-size: 1.4em;
+ }
+ 
+ .about-card:hover{
+     background:black
+ }
+ 
+ .about-card:hover{
+     transform: scale(1.05);
+ }
+ 
+ 
+ @media screen and (min-width: 768px){
+     section  {
+         padding: 1em 2em;
+     }
+ 
+   
+ }
+ 
+ 
+ @media screen and (min-width: 992px){
+     section {
+         padding: 1em 7em;
+     }
+     
+     .about-card{
+         padding: 5em 1em;
+     }
+ 
+     .about-column{
+         flex: 0 0 33.33%;
+         max-width: 33.33%;
+         padding: 1em 1em;
+     }
+ }
+ 
+ 

@@ -1,0 +1,153 @@
+.join{
+	background: #297f54;
+	width: 100%;
+	height: 90vh;
+	z-index: -999;
+	margin-top: -60px;
+}
+
+.title{
+	color: white;
+	font-size: 2.8rem;
+	font-weight: 570;
+	text-align: center;
+	padding-top: 120px;
+}
+
+.row{
+	margin-left: -70px;
+}
+
+.row i{
+	text-align: center;
+	margin-left: 20px;
+	padding-top: 10px;
+	font-size: 1.4rem;
+	color: #297f54;
+}
+
+.row{
+	margin-left: 130px ;
+	font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.column1 {
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+
+.column2 {
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+.column3 {
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+.column4 {
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+.column5 {
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+.column6 {
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+.column7 {
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+.column8 {
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+.column9{
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+.column10{
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+.column11 {
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+.column12 {
+  float: left;
+  width: 20%;
+  height: 50px;
+  background: white;
+  border-radius: 9px;
+  margin-left: 20px;
+}
+
+
+.row1 {
+  content: "";
+  display: table;
+  clear: both;
+  padding: 40px;
+}
+
+.row2 {
+  content: "";
+  display: table;
+  clear: both;
+  padding: 40px;
+}
+
+.row3 {
+  content: "";
+  display: table;
+  clear: both;
+  padding: 40px;
+}
