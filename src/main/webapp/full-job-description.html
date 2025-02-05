@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Amigo Dheena">
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="16x16" />
+
+    <!-- Title -->
+    <title>Job Description - SKY IT Best Recruiters & IT Services</title>
+    <meta name="description" content="Detailed job description for current openings at SKY IT." />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&amp;family=Urbanist:wght@600;700&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Build CSS -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- End Build -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <style>
+        /* Custom Styles for Job Description Page */
+        .job-description .job-details {
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .job-description h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: left;
+        }
+
+        .job-description h4 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #444;
+            text-align: left;
+        }
+
+        .job-description .time-date {
+            font-size: 1.3rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            display: block;
+            text-align: left;
+        }
+
+        .job-description ul {
+            list-style-type: disc;
+            padding-left: 2.5rem;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        .job-description ul li {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .job-description .template-btn {
+            font-size: 1.3rem;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+
+        .job-description .template-btn:hover {
+            transform: translateY(-2px);
+            background-color: #0056b3;
+        }
+
+        .job-description .job-type {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            display: block;
+            text-align: left;
+        }
+
+        .job-description .job-type svg {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Body Overlay -->
+    <div class="body-overlay"></div>
+
+    <!-- Scrolltop Button -->
+    <button class="scrolltop-btn"><i class="fa-solid fa-angle-up"></i></button>
+
+    <!-- Preloader Start -->
+    <div class="loader-wrap">
+        <div class="preloader">
+            <div id="handle-preloader" class="handle-preloader">
+                <div class="animation-preloader">
+                    <div class="spinner"></div>
+                    <div class="txt-loading">
+                        <a href="index.html" class="logo-black"><img src="assets/img/logo.png" alt="logo"
+                                class="logo"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Main Content Wrapper Start -->
+    <div class="main-wrapper">
+
+        <!-- Header Area Start -->
+        <header class="header-section header-gradient">
+            <div class="topbar">
+                <div class="container">
+                    <div class="row align-item-center">
+                        <div class="col-md-6">
+                            <div class="topbar-left"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="topbar-right text-end">
+                                <a href="mailto:info@theskyit.com"> <i class="fa-solid fa-envelope"> </i>
+                                    info@theskyit.com</a>
+                                <a href="mailto:hr@theskyit.com"> hr@theskyit.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="navbar-container"></div>
+        </header>
+        <!-- Header Area End -->
+
+        <script>
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+        </script>
+
+        <section class="breadcrumb-area bg-primary-gradient">
+            <div class="container">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="mb-3">Full-Job-Description</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- Job Description Section Start -->
+        <section class="job-description ptb-120 ds-bg">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="job-details bg-white rounded p-5" id="job-details">
+                            <!-- Job details will be dynamically loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Job Description Section End -->
+
+        <!-- Footer Section Start -->
+        <!-- Footer Section End -->
+    </div>
+    <!-- Main Content Wrapper Ends -->
+
+    <!-- Build JS -->
+    <script src="assets/js/vendors/jquery.min.js"></script>
+    <script src="assets/js/vendors/popper.min.js"></script>
+    <script src="assets/js/vendors/bootstrap.min.js"></script>
+    <script src="assets/js/vendors/easing.min.js"></script>
+    <script src="assets/js/vendors/swiper.min.js"></script>
+    <script src="assets/js/vendors/massonry.min.js"></script>
+    <script src="assets/js/vendors/bootstrap-slider.js"></script>
+    <script src="assets/js/vendors/magnific-popup.js"></script>
+    <script src="assets/js/vendors/waypoints.js"></script>
+    <script src="assets/js/vendors/counterup.js"></script>
+    <script src="assets/js/vendors/isotop.pkgd.min.js"></script>
+    <script src="assets/js/vendors/countdown.min.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <!-- Dynamic Job Loading Script -->
+    <script>
+        // Function to fetch job details based on URL parameter
+        function loadJobDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const jobId = urlParams.get('job'); // Get the job ID from the URL
+
+            // Define job data (can be fetched from an API in a real-world scenario)
+            const jobs = {
+                'hr-recruiter': {
+                    title: 'HR Recruiter',
+                    type: 'Onsite - Full Time',
+                    domain: 'HR',
+                    location: 'Navi Mumbai, Mumbai',
+                    experience: '1 to 2 years (candidate must have 1 year experience in End to End Recruitment)',
+                    salary: '1.2LPA to 3LPA',
+                    responsibilities: [
+                        'Identify and source candidates using job portals, social media, networking, and referrals.',
+                        'Maintain and update a database of potential candidates.',
+                        'Screen resumes and conduct initial interviews to assess candidates\' qualifications and cultural fit.',
+                        'Ensure job postings attract qualified candidates while reflecting the organization\'s brand and values.',
+                        'Provide regular updates and reports to the HR team and management.',
+                        'Collaborate with hiring managers to understand job requirements and team dynamics.',
+                        'Organize and attend job fairs and recruitment events to build a strong candidate pipeline.',
+                        'Negotiate job offers and facilitate the onboarding process for new hires.',
+                        'Develop and implement recruitment strategies to meet organizational hiring goals.',
+                        'Conduct background checks and verify employment history of candidates.'
+                    ],
+                    requirements: [
+                        'Bachelor’s degree in Human Resources, Business Administration, or related field.',
+                        'Proven experience as an HR Recruiter or similar role.',
+                        'Excellent communication and interpersonal skills.',
+                        'Strong understanding of recruitment processes and candidate selection methods.',
+                        'Proficiency in using recruitment software and applicant tracking systems (ATS).',
+                        'Ability to handle multiple hiring processes simultaneously.'
+                    ]
+                },
+                'software-engineer': {
+                    title: 'Software Engineer',
+                    type: 'Remote - Full Time',
+                    domain: 'IT Development',
+                    location: 'Bangalore, India (Remote)',
+                    experience: '2 to 4 years',
+                    salary: '4 LPA to 8 LPA',
+                    responsibilities: [
+                        'Develop and maintain web applications using modern frameworks.',
+                        'Collaborate with designers, product managers, and other engineers to deliver high-quality solutions.',
+                        'Write clean, scalable, and maintainable code following best practices.',
+                        'Conduct code reviews and ensure adherence to coding standards.',
+                        'Troubleshoot and debug applications to optimize performance.',
+                        'Participate in agile development processes, including sprint planning and retrospectives.',
+                        'Stay updated with emerging technologies and industry trends.',
+                        'Mentor junior developers and contribute to team knowledge sharing.',
+                        'Design and implement RESTful APIs for seamless integration with front-end applications.',
+                        'Work closely with DevOps teams to ensure smooth deployment and CI/CD pipelines.'
+                    ],
+                    requirements: [
+                        'Bachelor’s degree in Computer Science, Engineering, or related field.',
+                        'Proven experience as a Software Engineer or similar role.',
+                        'Proficiency in programming languages such as Java, Python, or JavaScript.',
+                        'Experience with front-end frameworks like React or Angular.',
+                        'Strong understanding of database systems (SQL and NoSQL).',
+                        'Familiarity with cloud platforms like AWS, Azure, or Google Cloud.'
+                    ]
+                }
+            };
+
+            // Get the job details based on the job ID
+            const job = jobs[jobId];
+
+            if (job) {
+                const jobDetails = document.getElementById('job-details');
+                jobDetails.innerHTML = `
+                    <span class="job-type d-block mb-4">
+                        <svg class="me-1" width="19" height="16" viewBox="0 0 19 16" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M17.6744 2.13347C17.6733 2.13347 17.6722 2.13333 17.6711 2.13333H12.8356V1.6C12.8356 0.717778 12.1178 0 11.2356 0H6.96889C6.08667 0 5.36889 0.717778 5.36889 1.6V2.13333H0.533333C0.236389 2.13333 0 2.37667 0 2.66667V14.4C0 15.2822 0.717778 16 1.6 16H16.6044C17.4867 16 18.2044 15.2822 18.2044 14.4V2.67792C18.2044 2.67722 18.2044 2.67653 18.2044 2.67583C18.184 2.32556 17.9686 2.13542 17.6744 2.13347V2.13347ZM6.43556 1.6C6.43556 1.30597 6.67486 1.06667 6.96889 1.06667H11.2356C11.5296 1.06667 11.7689 1.30597 11.7689 1.6V2.13333H6.43556V1.6ZM16.9311 3.2L15.2749 8.16861C15.2022 8.38681 14.9989 8.53333 14.769 8.53333H11.7689V8C11.7689 7.70542 11.5301 7.46667 11.2356 7.46667H6.96889C6.67431 7.46667 6.43556 7.70542 6.43556 8V8.53333H3.43542C3.20556 8.53333 3.00222 8.38681 2.92958 8.16861L1.27333 3.2H16.9311ZM10.7022 8.53333V9.6H7.50222V8.53333H10.7022ZM17.1378 14.4C17.1378 14.694 16.8985 14.9333 16.6044 14.9333H1.6C1.30597 14.9333 1.06667 14.694 1.06667 14.4V5.95319L1.91764 8.50597C2.13569 9.16042 2.74569 9.6 3.43542 9.6H6.43556V10.1333C6.43556 10.4279 6.67431 10.6667 6.96889 10.6667H11.2356C11.5301 10.6667 11.7689 10.4279 11.7689 10.1333V9.6H14.769C15.4588 9.6 16.0688 9.16042 16.2868 8.50597L17.1378 5.95319V14.4Z"
+                                fill="#666666" />
+                        </svg>${job.type}
+                    </span>
+                    <h2 class="mb-4">${job.title}</h2>
+                    <span class="time-date">
+                        <strong>Work Domain:</strong> ${job.domain}<br>
+                        <strong>Location:</strong> ${job.location}<br>
+                        <strong>Experience:</strong> ${job.experience}<br>
+                        <strong>Salary:</strong> ${job.salary}<br>
+                    </span>
+                    <div class="mt-5">
+                        <h4 class="mb-4">Job Responsibilities:</h4>
+                        <ul>
+                            ${job.responsibilities.map(res => `<li>${res}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="mt-5">
+                        <h4 class="mb-4">Requirements:</h4>
+                        <ul>
+                            ${job.requirements.map(req => `<li>${req}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="text-center mt-5">
+                        <a href="candidate-enquiry.html" class="template-btn primary-btn">Apply Now</a>
+                    </div>
+                `;
+            } else {
+                document.getElementById('job-details').innerHTML = `<p class="text-center">Job not found.</p>`;
+            }
+        }
+
+        // Load job details when the page loads
+        window.onload = loadJobDetails;
+    </script>
+</body>
+
+</html>

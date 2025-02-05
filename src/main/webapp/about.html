@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+
+<head>
+    <!--required meta tags-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Amigo Dheena">
+    <!--favicon icon-->
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="16x16" />
+
+    <!--title-->
+    <title>SKY IT Best Recruiters & IT Services </title>
+    <meta name="description" content="" />
+
+    <!--google fonts-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&amp;family=Urbanist:wght@600;700&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!--build:css-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- endbuild -->
+
+    <!--custom css-->
+    <link rel="stylesheet" href="assets/css/custom.css" />
+
+</head>
+
+<body>
+
+    <!--body overlay -->
+    <div class="body-overlay"></div>
+
+    <!--scrolltop button -->
+    <button class="scrolltop-btn"><i class="fa-solid fa-angle-up"></i></button>
+
+    <!--preloader start-->
+    <div class="loader-wrap">
+        <div class="preloader">
+            <div id="handle-preloader" class="handle-preloader">
+                <div class="animation-preloader">
+                    <div class="spinner"></div>
+                    <div class="txt-loading">
+                        <a href="index.html" class="logo-black"><img src="assets/img/logo.png" alt="logo"
+                                class="logo"></a>
+                        <!-- <span data-text-preloader="J" class="letters-loading">J</span>
+                    <span data-text-preloader="P" class="letters-loading">P</span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--preloader end-->
+    <!--main content wrapper start-->
+    <div class="main-wrapper">
+
+        <!--header area start-->
+        <header class="header-section header-gradient">
+            <div class="topbar">
+                <div class="container">
+                    <div class="row align-item-center">
+                        <div class="col-md-6">
+                            <div class="topbar-left">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="topbar-right text-end">
+                                <!-- <a href=""><i class="fa-solid fa-phone"> </i>  +91 </a> -->
+                                <a href="mailto:info@theskyit.com"> <i class="fa-solid fa-envelope"> </i>
+                                    info@theskyit.com</a>
+                                <a href="mailto:hr@theskyit.com"> hr@theskyit.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="navbar-container"></div>
+        </header>
+        <!--header area end-->
+
+        <!--mobile menu start-->
+        <script>
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+        </script>
+
+        <!--mobile menu end-->
+        <!--breadcrumb area start-->
+        <section class="breadcrumb-area bg-primary-gradient">
+            <div class="container">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="mb-3">About</h2>
+                    <nav>
+                        <ol class="breadcrumb">
+
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <!--breadcrumb area end-->
+
+        <!--about section start-->
+        <section class="hm7-about-section ptb-120 ds-bg overflow-hidden">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                        <div class="hm7-about-left position-relative zindex-1">
+                            <span class="position-absolute circle-shape-gradient zindex--1 rounded-circle"></span>
+                            <img src="assets/img/home7/about.png" alt="not found" class="img-fluid">
+                            <div class="hm7-counter-circle position-absolute rounded-circle bg-white">
+                                <div class="counter-circle-wrapper text-center">
+                                    <h2 class="mb-0 text-white"><span class="counter">5</span>+</h2>
+                                    <span class="fw-bold fs-sm text-white">Years of <br>Experience</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hm7-title">
+                            <h2 class="mb-3">About Us</h2>
+
+                            <p><b class='text-primary'>SKY IT Solutions</b> established in 2019, began with a small team
+                                of three and has since grown into a dedicated workforce of 30 professionals. We
+                                specialize in providing pan-India recruitment and outsourcing services, helping
+                                businesses find the right talent across diverse industries.</p>
+
+                            <p>In addition to recruitment, we offer expert digital marketing solutions that help
+                                businesses enhance their online presence and drive growth. Our services also include
+                                robust cybersecurity solutions to safeguard your digital infrastructure and web & app
+                                development to create innovative and user-friendly digital experiences. At SKY IT, we
+                                are committed to empowering businesses with cutting-edge technology and efficient
+                                workforce solutions.</p>
+
+                            <a href="about.html" class="template-btn primary-btn">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--about section end-->
+
+        <!--service section start-->
+        <section class="hm2-service-section pt-80 pb-80 overflow-hidden position-relative zindex-1 bg-primary-gradient">
+            <img src="assets/img/home2/shape/service-left-circle.svg" alt="circle"
+                class="position-absolute left-top opacity-25">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="service-left">
+                            <img src="assets/img/service-left.png" alt="server" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="service-right">
+                            <h2 class="hm2-title">We're Provide Best Recruitment and IT Services</h2>
+                            <p class="mt-3"><b class='text-primary'>SKY IT Solutions </b> based in Surat, has been
+                                providing exceptional staffing and recruitment services since 2019. </p>
+                            <div class="hm2-service-tab mt-30 mb-40">
+                                <ul class="nav nav-tabs">
+                                    <li>
+                                        <button class="active" data-bs-toggle="tab" data-bs-target="#vission"
+                                            type="button">
+                                            <i class="fa-solid fa-globe"></i>Vission
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button data-bs-toggle="tab" data-bs-target="#mission" type="button">
+                                            <i class="fa-solid fa-earth-asia"></i>Mission
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button data-bs-toggle="tab" data-bs-target="#goal" type="button">
+                                            <i class="fa-solid fa-earth-asia"></i>Goals
+                                        </button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content mt-4">
+                                    <div class="tab-pane fade" id="vission">
+                                        <p>To be a leading provider of innovative recruitment, technology, and digital
+                                            marketing solutions, empowering businesses to thrive in a fast-evolving
+                                            world by delivering exceptional talent and cutting-edge technology</p>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="mission">
+                                        <p>Our mission at SKY IT is to connect businesses with top-tier talent through
+                                            reliable recruitment services, enhance online presence through digital
+                                            marketing, and drive business growth with innovative web and app development
+                                            solutions.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="goal">
+                                        <p>Our goal at SKY IT is to continuously expand our capabilities and reach,
+                                            providing businesses with reliable staffing solutions, advanced digital
+                                            marketing strategies, and innovative web & app development.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="contact.html" class="template-btn hm2-primary-btn rounded-pill">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="assets/img/home2/shape/service-right-bottom.svg" alt="wave"
+                class="position-absolute right-bottom">
+        </section>
+        <!--service section end-->
+
+        <!--footer section start-->
+
+        <!--footer section end-->
+    </div>
+    <!-- main content wrapper ends -->
+
+
+    <!--build:js-->
+    <script src="assets/js/vendors/jquery.min.js"></script>
+    <script src="assets/js/vendors/popper.min.js"></script>
+    <script src="assets/js/vendors/bootstrap.min.js"></script>
+    <script src="assets/js/vendors/easing.min.js"></script>
+    <script src="assets/js/vendors/swiper.min.js"></script>
+    <script src="assets/js/vendors/massonry.min.js"></script>
+    <script src="assets/js/vendors/bootstrap-slider.js"></script>
+    <script src="assets/js/vendors/magnific-popup.js"></script>
+    <script src="assets/js/vendors/waypoints.js"></script>
+    <script src="assets/js/vendors/counterup.js"></script>
+    <script src="assets/js/vendors/isotop.pkgd.min.js"></script>
+    <script src="assets/js/vendors/countdown.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <!--endbuild-->
+</body>
+
+
+
+<!-- Mirrored from www.jprecruiters.in/about.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Nov 2024 16:18:46 GMT -->
+
+</html>

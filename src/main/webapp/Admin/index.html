@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Sidebar</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/9ad568764d.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+     
+    <div id="sidebar" class="fixed lg:static transform -translate-x-full lg:translate-x-0 transition-transform duration-300 bg-gradient-to-t from-cyan-500 to-blue-500 text-white w-80 min-h-screen flex flex-col p-4 font-bold z-50">
+      <button  class="btn block  focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-1/5 ml-3 lg:hidden" id="close-sidebar">
+        <i class="fa-solid fa-xmark "></i>
+      </button>
+      <ul class="menu text-xl">
+       
+        <li class="mb-2"><a href="/" class="hover:bg-blue-600 rounded-md p-2"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+        <hr class="my-4 w-full border-white" />
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2"  href="./candidate.html"><i class="fa-solid fa-person"></i>Candidates</a></li>
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2" href="./jobpost.html"><i class="fa-solid fa-briefcase"></i>Job Posts</a></li>
+      </ul>
+    </div>
+    <!-- Main Content -->
+    <div class="flex-1">
+      <!-- Navbar -->
+      <div class="navbar bg-white text-neutral-content p-4 shadow-md">
+        <div class="flex-1">
+          <!-- Sidebar Toggle Button for Mobile -->
+          <button id="toggle-sidebar"  class="btn block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center lg:hidden w-1/5">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img
+                alt="Avatar"
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            </div>
+          </div>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            <li class="flex justify-center items-center">
+              <a class="text-white font-medium h-10 flex px-2 py-1 justify-center items-center w-20 block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-600">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Page Content -->
+      <div class="p-6">
+        <p>Welcome</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="./dashboard.js"></script>
+
+</body>
+</html>

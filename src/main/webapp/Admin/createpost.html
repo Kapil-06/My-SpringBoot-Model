@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Sidebar - Candidates</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- font awesome -->
+  <style>
+    .skill-tag {
+      display: inline-flex;
+      align-items: center;
+      background-color: #e2e8f0;
+      border-radius: 9999px;
+      padding: 4px 10px;
+      margin: 2px;
+      font-size: 14px;
+    }
+    .remove-btn {
+      margin-left: 8px;
+      cursor: pointer;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/9ad568764d.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <div id="sidebar"  class="fixed lg:static transform -translate-x-full lg:translate-x-0 transition-transform duration-300 bg-gradient-to-t from-cyan-500 to-blue-500 text-white w-80 min-h-screen flex flex-col p-4 font-bold z-50">
+      <button class="btn block  focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-1/5 ml-3 lg:hidden" id="close-sidebar">
+        <i class="fa-solid fa-xmark "></i>
+      </button>
+      <ul class="menu text-xl">
+        <li class="mb-2"><a href="/" class="hover:bg-blue-600 rounded-md p-2"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+        <hr class="my-4 w-full border-white" />
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2"  href="./candidate.html"><i class="fa-solid fa-person"></i>Candidates</a></li>
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2" href="./jobpost.html"><i class="fa-solid fa-briefcase"></i>Job Posts</a></li>
+      </ul>
+    </div>
+    <!-- Main Content -->
+    <div class="flex-1 w-full">
+      <!-- Navbar -->
+      <div class="navbar bg-white p-4 shadow-md">
+        <h1 class="text-xl font-bold text-center hidden sm:block">Create Job Post</h1>
+        <div class="flex-1">
+          <!-- Sidebar Toggle Button for Mobile -->
+          <button id="toggle-sidebar" class="btn block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center lg:hidden w-1/5">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img
+                alt="Avatar"
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            </div>
+          </div>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            <li class="flex justify-center items-center">
+              <a class="text-white font-medium h-10 flex px-2 py-1 justify-center items-center w-20 block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-600">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Page Content -->
+      <form id="job-post-form" onsubmit="return validateForm()">
+        <div class="p-6">
+          <div class="bg-white shadow-md rounded-xl w-full max-w-full mx-auto">
+            <div class="p-3 rounded-t-xl flex justify-between items-center gap-4">
+              <p class="font-bold text-xl">General Information</p>
+            </div>
+            <hr class="my-4 mx-auto border-t-2 border-gray-300"/>
+            <div class="p-4">
+              <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Job Title -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">Job Title
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="jobTitle"
+                    placeholder="Job Title"
+                    id="jobTitle"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+      
+                <!-- Job Category -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">Job Category
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="jobCategory"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  >
+                    <option value="">Select role</option>
+                    <option value="Technical">Technical</option> 
+                    <option value="Non Technical">Non Technical</option>
+                  </select>
+                </div>
+              </div>
+      
+              <!-- Job Position and Qualification -->
+              <div class="flex flex-col lg:flex-row gap-6 mt-3">
+                <!-- Job Position -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">Job Position
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="jobPosition"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  >
+                    <option value="">Select job position</option>
+                    <option value="Java Developer">Java Developer</option>
+                    <option value="Frontend Developer">Frontend Developer</option>
+                    <option value="MERN Developer">MERN Developer</option>
+                  </select>
+                </div>
+      
+                <!-- Qualification -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">Qualification
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Qualification"
+                    id="qualification"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+              </div>
+      
+              <!-- Job Description -->
+              <div class="mt-3">
+                <label class="mb-2 text-sm font-bold">Job Description
+                  <span class="text-red-500">*</span>
+                </label>
+                <textarea name="content" id="editor" class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none w-full" rows="4"></textarea>
+              </div>
+              
+              <!-- Job Experience -->
+              <div class="flex flex-col lg:flex-row gap-6 mt-3">
+                <!-- Job Experience -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">Job Experience
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="jobExperience"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  >
+                    <option value="">Select job experience</option>
+                    <option value="Fresher">Fresher</option>
+                    <option value="1 year Experience">1 year Experience</option>
+                    <option value="2 year Experience">2 year Experience</option>
+                  </select>
+                </div>
+
+                <!-- Skills -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">Skills</label>
+                  <div class="flex items-center w-full">
+                    <input
+                      id="skillsInput"
+                      type="text"
+                      placeholder="Enter skills"
+                      class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none flex-grow"
+                    />
+                    <button id="addSkillButton" class="ml-2 block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                      Add Skills
+                    </button>
+                  </div>
+                  <div id="skillsList" class="mt-4"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Salary -->
+        <div class="p-6">
+          <div class="bg-white shadow-md rounded-xl w-full max-w-6xl mx-auto">
+            <div class="p-3 rounded-t-xl flex justify-between items-center gap-4">
+              <p class="font-bold text-xl">Salary</p>
+            </div>
+            <hr class="my-4 mx-auto border-t-2 border-gray-300"/>
+            <div class="p-4">
+              <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Minimum Salary -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">Minimum Salary</label>
+                  <input
+                    type="text"
+                    placeholder="Minimum salary"
+                    id="minSalary"
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+      
+                <!-- Maximum Salary -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">Maximum Salary</label>
+                  <input
+                    type="text"
+                    placeholder="Maximum salary"
+                    id="maxSalary"
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Job Location -->
+        <div class="p-6">
+          <div class="bg-white shadow-md rounded-xl w-full max-w-6xl mx-auto">
+            <div class="p-3 rounded-t-xl flex justify-between items-center gap-4">
+              <p class="font-bold text-xl">Job Location</p>
+            </div>
+            <hr class="my-4 mx-auto border-t-2 border-gray-300"/>
+            <div class="p-4">
+              <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Country Field -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">Country
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Country"
+                    id="country"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+      
+                <!-- State Field -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">State
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="State"
+                    id="state"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+      
+                <!-- City Field -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm font-bold">City
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="City"
+                    id="city"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Create Job Button -->
+        <div class="flex justify-center mb-10">
+          <input
+            type="submit"
+            value="Create Job Post"
+            class="block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          />
+        </div>
+      
+      </form>
+    </div>
+  </div>
+
+  <script src="./dashboard.js"></script>
+<script src="./candidate.js"></script>
+<script src="./createpost.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+            console.log('CKEditor was initialized', editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
+<!-- Axios Library -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.getElementById('job-post-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const form = document.getElementById('job-post-form');
+    const formData = new FormData(form);
+
+    // Validation logic
+    if (!formData.get('jobTitle') || !formData.get('jobCategory') || !formData.get('jobPosition') ||
+        !formData.get('qualification') || !formData.get('jobDescription') ||
+        !formData.get('jobExperience') || !formData.get('skills') || !formData.get('minSalary') ||
+        !formData.get('maxSalary') || !formData.get('country') || !formData.get('state') || !formData.get('city')) {
+        document.querySelector('#form_status').innerHTML = '<div class="alert alert-danger" role="alert">Please fill all the fields!</div>';
+        return;
+    }
+
+    // Send form data to backend using Axios
+    axios.post('http://localhost:8080/api/v1/job/details-submit', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
+    .then(response => {
+        const responseData = response.data;
+        console.log(responseData)
+        if (responseData.success) {
+          
+            document.querySelector('#form_status').innerHTML = `<div class="alert alert-success" role="alert">${responseData.message}</div>`;
+            alert(responseData.message);
+            form.reset(); // Reset form
+        } else {
+            document.querySelector('#form_status').innerHTML = `<div class="alert alert-danger" role="alert">${responseData.message}</div>`;
+        }
+
+    })
+    .catch(error => {
+        let errorMessage = "Failed to submit job post!";
+        if (error.response && error.response.data) {
+            errorMessage = error.response.data.message || errorMessage;
+        }
+        document.querySelector('#form_status').innerHTML = `<div class="alert alert-danger" role="alert">${errorMessage}</div>`;
+        alert(errorMessage);
+    });
+});
+
+</script>
+</body>
+</html>
