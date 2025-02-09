@@ -33,7 +33,7 @@ public class EmailServiceImpl implements EmailService {
 	public void sendMailToAdmin(@Valid CandidateDTO candidateDTO,MultipartFile file) {
 		
 		try {
-			String to = "kapil2000kadu@gmail.com";
+			String to = " ";
 			String subject = "New Application for " + candidateDTO.getRole();
 			String messageText = String.format(
 	                "Candidate Details:\n\nName: %s\nEmail: %s\nPhone: %s\nFor Role: %s\nEducation: %s\nExperience:  %s",
