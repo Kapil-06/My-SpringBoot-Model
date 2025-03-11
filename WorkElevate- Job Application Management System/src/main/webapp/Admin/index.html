@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Sidebar</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/9ad568764d.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed lg:static transform -translate-x-full lg:translate-x-0 transition-transform duration-300 bg-gradient-to-t from-cyan-500 to-blue-500 text-white w-80 min-h-screen flex flex-col p-4 font-bold z-50">
+      <button class="btn block focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-1/5 ml-3 lg:hidden" id="close-sidebar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <ul class="menu text-xl">
+        <li class="mb-2"><a href="./index.html" class="hover:bg-blue-600 rounded-md p-2"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+        <hr class="my-4 w-full border-white" />
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2" href="./candidate.html"><i class="fa-solid fa-person"></i>Candidates</a></li>
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2" href="./jobpost.html"><i class="fa-solid fa-briefcase"></i>Job Posts</a></li>
+        <li class="relative mb-2">
+          <a href="#" class="rounded-md p-2 flex items-center" id="pagesDropdownButton">
+            <i class="fa-solid fa-file-lines"></i> Pages
+          </a>
+          <ul class="absolute left-0 mt-10 w-full  text-white rounded-md  hidden" id="pagesDropdownMenu">
+            
+              <li><a href="./partner.html" class="block px-4 py-2 rounded-md">Upload Client Logo</a></li>
+              <li><a href="./hrcontact.html" class="block px-4 py-2 rounded-md">Upload Contact</a></li>
+              <!-- <li><a href="./businesscontact.html" class="block px-4 py-2 rounded-md">Buisness Contact</a></li> -->
+          </ul>
+      </li>
+
+      </ul>
+    </div>
+    <!-- Main Content -->
+    <div class="flex-1">
+      <!-- Navbar -->
+      <div class="navbar bg-white text-neutral-content p-4 shadow-md">
+        <h1 class="text-xl text-black font-bold hidden sm:block">Dashboard</h1>
+
+        <div class="flex-1">
+          <!-- Sidebar Toggle Button for Mobile -->
+          <button id="toggle-sidebar" class="btn block tex>t-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center lg:hidden w-1/5">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+        <button id="logoutButton" class="text-white font-medium h-10 flex px-2 py-1 justify-center items-center w-20 block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-600">Logout</button>
+      </div>
+
+      <!-- Page Content -->
+      <div class="p-6" >
+        
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 mt-10">
+          <a href="./candidate.html" id="candidatesCard" class="block w-[300px] h-50 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-center">
+            <h2 class="w-16 h-16 bg-blue-500 text-white rounded-full flex justify-center items-center mx-auto mb-4">
+              <i class="fa-solid fa-person text-2xl"></i>
+            </h2>
+          
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Total Candidates</h5>
+            <p id="totalCandidates" class="font-normal text-xl text-gray-700 dark:text-gray-400">Loading...</p>
+          </a>
+          
+          <a href="./jobpost.html" id="jobPostsCard" class="block w-[300px] h-50 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-center">
+            <h2 class="w-16 h-16 bg-blue-500 text-white rounded-full flex justify-center items-center mx-auto mb-4">
+              <i class="fa-solid fa-briefcase text-2xl"></i>
+            </h2>
+          
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Total Job Posts</h5>
+            <p id="totalJobPosts" class="font-normal text-xl text-gray-700 dark:text-gray-400">Loading...</p>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <input type="hidden" name="_csrf" id="csrfToken" />
+  <!-- Axios Library -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./dashboard.js"></script>
+
+  <script>
+     document.addEventListener("DOMContentLoaded", function () {
+        // Fetch CSRF token when the page loads
+        fetch("/csrf-token", {
+            credentials: 'include' // Ensure cookies are sent with the request
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Set CSRF token in the hidden input field
+            document.getElementById("csrfToken").value = data.token;
+        })
+        .catch(error => console.error("Error fetching CSRF token:", error));
+    });
+    
+    axios.get("http://localhost:8080/api/v1/admin/dashboard", { withCredentials: true })
+      .then(response => {
+        if (response.data.success) {
+          //alert(response.data.message); // Success message
+          // Dashboard pe render karwana ya redirect karna
+        }
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 401) {
+          //alert("Session expired. Please login again.");
+          window.location.href = "/admin-login.html"; // Redirect to login page
+        } else {
+          alert("Error accessing dashboard");
+        }
+      });
+
+      async function checkSession() {
+      try {
+        const response = await axios.get('http://localhost:8080/api/v1/admin/check-session', {
+          withCredentials: true // Include cookies in the request
+        });
+
+          if (!response.data.success) {
+            // If session is invalid, redirect to login page
+            window.location.href = '/admin-login.html';
+          }
+        } catch (error) {
+            console.error('Session check failed:', error);
+          if (error.response) {
+            // Server responded with a status code outside the 2xx range
+            //alert('Session check failed. Please try again.');
+          } else if (error.request) {
+            // Request was made but no response received
+            //alert('Network error. Please check your connection.');
+          } else {
+            // Something else happened
+            alert('An unexpected error occurred.');
+          }
+          window.location.href = '/admin-login.html';
+        }
+      }
+
+// Call the function when the page loads
+    // window.onload = checkSession;
+    window.onload = setInterval(checkSession, 600);
+
+    // Call the function when the page loads
+    //checkSession();
+
+    document.getElementById('logoutButton').addEventListener('click', async function () {
+    try {
+      const _csrf = document.getElementById("csrfToken").value;
+        const response = await fetch('http://localhost:8080/api/v1/admin/logout', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': _csrf  // Add CSRF token to headers
+            },
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+         
+            window.location.href = '/admin-login.html';
+        } else {
+           
+        }
+    } catch (error) {
+        console.error('Error during logout:', error);
+    }
+    });
+
+
+    // Function to fetch the total count of candidates and job posts
+async function fetchData() {
+  try {
+    // Fetch the total count of candidates
+    const candidatesResponse = await fetch('http://localhost:8080/api/v1/candidate/all/candidate');
+    const candidatesData = await candidatesResponse.json();
+    const totalCandidates = candidatesData.length; // Adjust based on the response format
+
+    // Fetch the total count of job posts
+    const jobPostsResponse = await fetch('http://localhost:8080/api/v1/job/jobpost-details');
+    const jobPostsData = await jobPostsResponse.json();
+    const totalJobPosts = jobPostsData.length; // Adjust based on the response format
+
+    // Update the cards with the fetched data
+    document.getElementById('totalCandidates').textContent = totalCandidates;
+    document.getElementById('totalJobPosts').textContent = totalJobPosts;
+
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    document.getElementById('totalCandidates').textContent = 'Error loading';
+    document.getElementById('totalJobPosts').textContent = 'Error loading';
+  }
+}
+
+// Fetch data when the page loads
+window.onload = fetchData;
+
+
+
+
+  </script>
+</body>
+</html>

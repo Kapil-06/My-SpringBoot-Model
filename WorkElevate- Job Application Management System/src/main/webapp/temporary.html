@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Uploaded Images</title>
+</head>
+<body>
+    <h1>Upload and Display Images</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/png, image/jpeg, image/jpg" required>
+        <button type="submit">Upload Image</button>
+    </form>
+
+    <div id="imageContainer">
+        <!-- Images will be displayed here -->
+    </div>
+
+  <script>
+    // Array to store all uploaded image IDs
+let uploadedImageIds = [];
+
+// Function to fetch and display images by their IDs
+// async function fetchAndDisplayImages(imageIds) {
+//     try {
+//         // Construct the API URL with the image IDs
+//         const apiUrl = `http://localhost:8080/image/get?ids=${imageIds.join(',')}`;
+
+//         // Fetch the images
+//         const response = await fetch(apiUrl);
+//         if (response.ok) {
+//             const imageResponses = await response.json(); // Parse the response as JSON
+
+//             // Clear the container before displaying new images
+//             document.getElementById('imageContainer').innerHTML = '';
+
+//             // Iterate through each image response
+//             imageResponses.forEach(imageResponse => {
+//                 if (imageResponse.statusCodeValue === 200 && imageResponse.body) {
+//                     // Extract the image data and content type
+//                     const imageData = imageResponse.body.data;
+//                     const fileName = imageResponse.body.name;
+
+//                     // Ensure the file name and data are valid
+//                     if (!fileName || !imageData) {
+//                         console.error('Invalid image data or file name:', imageResponse.body);
+//                         return;
+//                     }
+
+//                     // Extract file extension from the file name
+//                     const fileExtension = fileName.split('.').pop();
+//                     const contentType = `image/${fileExtension}`;
+
+//                     // Convert base64 image data to a Blob
+//                     try {
+//                         const byteCharacters = atob(imageData); // Decode base64
+//                         const byteNumbers = new Array(byteCharacters.length);
+//                         for (let i = 0; i < byteCharacters.length; i++) {
+//                             byteNumbers[i] = byteCharacters.charCodeAt(i);
+//                         }
+//                         const byteArray = new Uint8Array(byteNumbers);
+//                         const blob = new Blob([byteArray], { type: contentType });
+
+//                         // Create an object URL for the Blob
+//                         const imageUrl = URL.createObjectURL(blob);
+
+//                         // Create and append the image element
+//                         const imgElement = document.createElement('img');
+//                         imgElement.src = imageUrl;
+//                         imgElement.alt = "Uploaded Image";
+//                         imgElement.style.maxWidth = "100%";
+//                         imgElement.style.margin = "10px";
+//                         document.getElementById('imageContainer').appendChild(imgElement);
+//                     } catch (error) {
+//                         console.error('Error decoding image data:', error);
+//                     }
+//                 } else {
+//                     console.error('Error fetching image:', imageResponse.body);
+//                 }
+//             });
+//         } else {
+//             console.error('Failed to fetch images:', response.statusText);
+//         }
+//     } catch (error) {
+//         console.error('Error fetching images:', error);
+//     }
+// }
+
+async function fetchAndDisplayImages(imageIds) {
+    try {
+        // Construct the API URL
+        let apiUrl = 'http://localhost:8080/image/get';
+        if (imageIds && imageIds.length > 0) {
+            // Filter out empty or invalid IDs
+            const validIds = imageIds.filter(id => id && id.trim() !== '');
+            if (validIds.length > 0) {
+                apiUrl += `?ids=${validIds.join(',')}`;
+            }
+        }
+
+        // Fetch the images
+        const response = await fetch(apiUrl);
+        if (response.ok) {
+            const imageResponses = await response.json();
+            console.log("Fetched images:", imageResponses); // Debugging
+
+            // Clear the container before displaying new images
+            const imageContainer = document.getElementById('imageContainer');
+            imageContainer.innerHTML = '';
+
+            // Iterate through each image response
+            imageResponses.forEach(imageResponse => {
+                if (imageResponse.statusCodeValue === 200 && imageResponse.body) {
+                    const imageData = imageResponse.body.data;
+                    const fileName = imageResponse.body.name;
+
+                    if (!fileName || !imageData) {
+                        console.error('Invalid image data or file name:', imageResponse.body);
+                        return; // Skip invalid images
+                    }
+
+                    const fileExtension = fileName.split('.').pop();
+                    const contentType = `image/${fileExtension}`;
+
+                    try {
+                        const byteCharacters = atob(imageData); // Decode base64
+                        const byteNumbers = new Array(byteCharacters.length);
+                        for (let i = 0; i < byteCharacters.length; i++) {
+                            byteNumbers[i] = byteCharacters.charCodeAt(i);
+                        }
+                        const byteArray = new Uint8Array(byteNumbers);
+                        const blob = new Blob([byteArray], { type: contentType });
+
+                        // Create an object URL for the Blob
+                        const imageUrl = URL.createObjectURL(blob);
+
+                        // Create a new box for each image
+                        const box = document.createElement('div');
+                        box.className = 'image-box';
+                        box.style.border = '1px solid #ccc';
+                        box.style.padding = '10px';
+                        box.style.margin = '10px';
+                        box.style.display = 'inline-block';
+                        box.style.width = "270px"; // Fixed box width
+                        box.style.height = "150px"; // Fixed box height
+                        box.style.overflow = "hidden"; // Hide overflow
+
+                        const imgElement = document.createElement('img');
+                        imgElement.src = imageUrl;
+                        imgElement.alt = "Uploaded Image";
+                        imgElement.style.width = "100%"; // Image takes full width of the box
+                        imgElement.style.height = "100%"; // Image takes full height of the box
+                        imgElement.style.objectFit = "contain"; // Ensures the image fits inside the box without cropping
+
+                        box.appendChild(imgElement);
+                        imageContainer.appendChild(box);
+                    } catch (error) {
+                        console.error('Error decoding image data:', error);
+                    }
+                } else {
+                    console.error('Error fetching image:', imageResponse.body);
+                }
+            });
+        } else {
+            console.error('Failed to fetch images:', response.statusText);
+            alert('Failed to fetch images. Please check the server logs.');
+        }
+    } catch (error) {
+        console.error('Error fetching images:', error);
+        alert('An error occurred while fetching images. Please try again.');
+    }
+}
+
+// Function to initialize the page with previously uploaded images
+async function initializePage() {
+    try {
+        const response = await fetch('http://localhost:8080/image/get');
+        if (response.ok) {
+            const imageResponses = await response.json();
+            console.log("Fetched images:", imageResponses); // Debugging
+
+            // Extract image IDs from the responses
+            uploadedImageIds = imageResponses.map(imageResponse => imageResponse.body.id);
+
+            // Fetch and display all previously uploaded images
+            fetchAndDisplayImages(uploadedImageIds);
+        } else {
+            console.error('Failed to fetch previously uploaded image IDs:', response.statusText);
+            alert('Failed to fetch images. Please check the server logs.');
+        }
+    } catch (error) {
+        console.error('Error initializing page:', error);
+        alert('An error occurred while initializing the page. Please try again.');
+    }
+}
+
+// Initialize the page with previously uploaded images
+initializePage();
+
+document.getElementById('uploadForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+    const fileInput = document.querySelector('input[type="file"]');
+    formData.append('file', fileInput.files[0]);
+
+    try {
+        const uploadResponse = await fetch('http://localhost:8080/image/upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (uploadResponse.ok) {
+            const responseData = await uploadResponse.json();
+            console.log("Server Response:", responseData);
+
+            // Fetch and display all images (including the newly uploaded one)
+            initializePage();
+        } else {
+            alert('Image upload failed: ' + uploadResponse.statusText);
+        }
+    } catch (error) {
+        console.error('Error uploading image:', error);
+        alert('An error occurred while uploading the image.');
+    }
+});
+// Handle form submission for uploading new images
+// document.getElementById('uploadForm').addEventListener('submit', async function (e) {
+//     e.preventDefault();
+
+//     const formData = new FormData();
+//     const fileInput = document.querySelector('input[type="file"]');
+//     formData.append('file', fileInput.files[0]);
+
+//     try {
+//         // Upload the image
+//         const uploadResponse = await fetch('http://localhost:8080/image/upload', {
+//             method: 'POST',
+//             body: formData
+//         });
+
+//         if (uploadResponse.ok) {
+//             const responseData = await uploadResponse.json(); // Parse the response as JSON
+//             console.log("Server Response:", responseData); // Log the response for debugging
+
+//             // Extract the new image ID from the response
+//             const newImageId = responseData.body.id;
+
+//             // Add the new image ID to the list of uploaded image IDs
+//             uploadedImageIds.push(newImageId);
+
+//             // Fetch and display all images (including the newly uploaded one)
+//             fetchAndDisplayImages(uploadedImageIds);
+//         } else {
+//             alert('Image upload failed: ' + uploadResponse.statusText);
+//         }
+//     } catch (error) {
+//         console.error('Error uploading image:', error);
+//         alert('An error occurred while uploading the image.');
+//     }
+// });
+  </script>
+</body>
+</html>

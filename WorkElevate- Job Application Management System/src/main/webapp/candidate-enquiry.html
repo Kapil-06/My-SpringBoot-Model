@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Amigo Dheena" />
+    <link
+      rel="icon"
+      href="assets/img/favicon.png"
+      type="image/png"
+      sizes="16x16"
+    />
+    <title>SKY IT Best Recruiters & IT Services</title>
+    <meta name="description" content="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&amp;family=Urbanist:wght@600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <style>
+      /* Custom Styles for the Form */
+      .hm-contact-form {
+        padding: 40px;
+        border-radius: 12px;
+      }
+      .input-field {
+        margin-bottom: 20px;
+      }
+      .input-field label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #fff;
+      }
+      .input-field input,
+      .input-field select {
+        width: 100%;
+        padding: 20px;
+        border: 1px solid #e7e7e7;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #656565;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+      }
+      .input-field input:focus,
+      .input-field select:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+      .input-field input[readonly] {
+        cursor: not-allowed;
+      }
+      .phone-input-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .phone-input-group input[readonly] {
+        flex: 0 0 70px;
+        min-width: 70px;
+        font-size: 13px;
+        padding: 12px 5px;
+        font-weight: bold;
+        text-align: center;
+      }
+      .submit-btn button {
+        background: #007bff;
+        color: #fff;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .submit-btn button:hover {
+        background: #0056b3;
+      }
+      .form-group label {
+        color: #fff;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: block;
+      }
+      .form-group input[type="file"] {
+        background: #ffffff;
+        border: none; /* Removed border */
+        padding: 12px;
+        border-radius: 8px;
+        color: #000; /* Changed to black */
+        width: 100%;
+      }
+      .form-group input[type="file"]::file-selector-button {
+        color: #fff;
+        background: #007bff;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .form-group input[type="file"]::file-selector-button:hover {
+        background: #0056b3; /* Dark blue on hover */
+      }
+
+      .form-select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #444;
+        border-radius: 8px;
+        background: #ffffff; /* Background set to match other fields */
+        color: #000000; /* Text color set to white */
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); /* Arrow color changed to white */
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 1em;
+      }
+
+      .form-select:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: none;
+      }
+
+      .form-select option {
+        background: #ffffff; /* Set option background to match the dropdown */
+        color: #000000; /* Set option text color to white */
+      }
+      .message-box {
+        margin-bottom: 20px;
+      }
+      .alert {
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+      .alert-danger {
+        background: #ff4444;
+        color: #fff;
+      }
+      .alert-success {
+        background: #00c851;
+        color: #fff;
+      }
+      .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .loader .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #007bff;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .success-message {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .success-message .message-box {
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .success-message .message-box h3 {
+        color: #000;
+        margin-bottom: 20px;
+      }
+      .success-message .message-box a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .d-none {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="body-overlay"></div>
+
+    <!--scrolltop button -->
+    <button class="scrolltop-btn"><i class="fa-solid fa-angle-up"></i></button>
+
+    <!--preloader start-->
+    <div class="loader-wrap">
+      <div class="preloader">
+        <div id="handle-preloader" class="handle-preloader">
+          <div class="animation-preloader">
+            <div class="spinner"></div>
+            <div class="txt-loading">
+              <a href="index.html" class="logo-black"
+                ><img src="assets/img/logo.png" alt="logo" class="logo"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--preloader end-->
+
+    <!--main content wrapper start-->
+    <div class="main-wrapper">
+      <!--header area start-->
+      <header class="header-section header-gradient">
+        <div class="topbar">
+          <div class="container">
+            <div class="row align-item-center">
+              <div class="col-md-6">
+                <div class="topbar-left"></div>
+              </div>
+              <div class="col-md-6">
+                <div class="topbar-right text-end">
+                  <a href="mailto:info@theskyit.com">
+                    <i class="fa-solid fa-envelope"> </i> info@theskyit.com</a
+                  >
+                  <a href="mailto:hr@theskyit.com"> hr@theskyit.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="navbar-container"></div>
+      </header>
+      <!--header area end-->
+
+      <script>
+        fetch("navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-container").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading navbar:", error));
+      </script>
+
+      <!--breadcrumb area start-->
+      <section class="breadcrumb-area bg-primary-gradient">
+        <div class="container">
+          <div class="breadcrumb-content text-center">
+            <h2 class="mb-3">Apply Job</h2>
+            <nav>
+              <ol class="breadcrumb"></ol>
+            </nav>
+          </div>
+        </div>
+      </section>
+      <!--breadcrumb area end-->
+
+      <!--contact form -->
+      <section
+        class="hm-contact-area position-relative pt-60 pb-120 overflow-hidden bg-white zindex-1"
+      >
+        <img
+          src="assets/img/contact-bg-left.png"
+          alt="bg"
+          class="position-absolute left-bottom"
+        />
+        <img
+          src="assets/img/contact-bg-right.png"
+          alt="bg"
+          class="position-absolute right-bottom"
+        />
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="ct-section-title text-center">
+                <h2>We're Ready To Help You Choose Your Right Destination</h2>
+              </div>
+            </div>
+          </div>
+          <div class="hm-contact-form mt-5" id="contact">
+            <div class="col-12 pb-3 message-box d-none">
+              <div class="alert alert-danger"></div>
+            </div>
+            <div id="form_status"></div>
+            <form
+              action="/form-submit"
+              enctype="multipart/form-data"
+              method="POST"
+              id="contact-form"
+              class="contact-us-form"
+              onSubmit="return validate_form(this);"
+            >
+              <input type="hidden" name="_csrf" id="csrfToken" />
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <div class="row g-4">
+                    <div class="col-md-6">
+                      <div class="input-field">
+                        <label for="name">Name <span class="text-danger">*</span></label>
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder="Enter name"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-field">
+                        <label for="email">Email<span class="text-danger">*</span></label>
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Enter email"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-field">
+                        <label for="phone">Phone<span class="text-danger">*</span></label>
+                        <div class="phone-input-group">
+                          <input
+                            type="text"
+                            name="phone-code"
+                            value="+91"
+                            readonly
+                          />
+                          <input
+                            type="text"
+                            name="phone"
+                            placeholder="Enter mobile no."
+                            pattern="[0-9]{10}"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-field">
+                        <label for="role">Role<span class="text-danger">*</span></label>
+                        <input
+                          type="text"
+                          name="role"
+                          placeholder="Your Role"
+                          id="role"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-field">
+                        <label for="educationalQualification"
+                          >Qualification<span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="text"
+                          name="educationalQualification"
+                          placeholder="Enter Qualification"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-field">
+                        <label for="experience">Experience<span class="text-danger">*</span></label>
+                        <input
+                          type="text"
+                          name="experience"
+                          placeholder="Enter Experience"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-field">
+                        <label for="city">City<span class="text-danger">*</span></label>
+                        <input
+                          type="text"
+                          name="city"
+                          placeholder="Enter City"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-field">
+                        <label for="state">State<span class="text-danger">*</span></label>
+                        <select
+                          name="state"
+                          id="state"
+                          class="form-select"
+                          required
+                        >
+                          <option value="">Select State</option>
+                          <option value="Andhra Pradesh">Andhra Pradesh</option>
+                          <option value="Arunachal Pradesh">
+                            Arunachal Pradesh
+                          </option>
+                          <option value="Assam">Assam</option>
+                          <option value="Bihar">Bihar</option>
+                          <option value="Chhattisgarh">Chhattisgarh</option>
+                          <option value="Delhi">Delhi</option>
+                          <option value="Goa">Goa</option>
+                          <option value="Gujarat">Gujarat</option>
+                          <option value="Haryana">Haryana</option>
+                          <option value="Himachal Pradesh">
+                            Himachal Pradesh
+                          </option>
+                          <option value="Jharkhand">Jharkhand</option>
+                          <option value="Karnataka">Karnataka</option>
+                          <option value="Kerala">Kerala</option>
+                          <option value="Madhya Pradesh">Madhya Pradesh</option>
+                          <option value="Maharashtra">Maharashtra</option>
+                          <option value="Manipur">Manipur</option>
+                          <option value="Meghalaya">Meghalaya</option>
+                          <option value="Mizoram">Mizoram</option>
+                          <option value="Nagaland">Nagaland</option>
+                          <option value="Odisha">Odisha</option>
+                          <option value="Punjab">Punjab</option>
+                          <option value="Rajasthan">Rajasthan</option>
+                          <option value="Sikkim">Sikkim</option>
+                          <option value="Tamil Nadu">Tamil Nadu</option>
+                          <option value="Telangana">Telangana</option>
+                          <option value="Tripura">Tripura</option>
+                          <option value="Uttar Pradesh">Uttar Pradesh</option>
+                          <option value="Uttarakhand">Uttarakhand</option>
+                          <option value="West Bengal">West Bengal</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="resume">Select your Resume</label>
+                        <input
+                          class="form-control"
+                          type="file"
+                          name="resume"
+                          placeholder="Attachment"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="submit-btn text-center mt-4">
+                <button
+                  type="submit"
+                  value="Submit"
+                  class="template-btn primary-btn border-0 rounded-pill"
+                >
+                  Send Message<i class="fa-solid fa-chevron-right ms-2"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!--contact form end -->
+
+      <!--footer section start-->
+      <!--footer section end-->
+    </div>
+    <!-- main content wrapper ends -->
+
+    <!-- Loader and Success Message -->
+    <div id="loader" class="loader d-none">
+      <div class="spinner"></div>
+    </div>
+    <div id="success-message" class="success-message d-none">
+      <div class="message-box">
+        <h3>Job application has been submitted</h3>
+        <a href="current-openings.html">Back to job posting</a>
+      </div>
+    </div>
+
+    <!--build:js-->
+    <script src="assets/js/vendors/jquery.min.js"></script>
+    <script src="assets/js/vendors/popper.min.js"></script>
+    <script src="assets/js/vendors/bootstrap.min.js"></script>
+    <script src="assets/js/vendors/easing.min.js"></script>
+    <script src="assets/js/vendors/swiper.min.js"></script>
+    <script src="assets/js/vendors/massonry.min.js"></script>
+    <script src="assets/js/vendors/bootstrap-slider.js"></script>
+    <script src="assets/js/vendors/magnific-popup.js"></script>
+    <script src="assets/js/vendors/waypoints.js"></script>
+    <script src="assets/js/vendors/counterup.js"></script>
+    <script src="assets/js/vendors/isotop.pkgd.min.js"></script>
+    <script src="assets/js/vendors/countdown.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <!--endbuild-->
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/csrf-token", {
+          credentials: "include", // Ensure cookies are sent with the request
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Set CSRF token in the hidden input field
+            document.getElementById("csrfToken").value = data.token;
+          })
+          .catch((error) => console.error("Error fetching CSRF token:", error));
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get("role");
+
+        if (role) {
+          document.getElementById("role").value = role;
+        }
+      });
+
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const form = document.getElementById("contact-form");
+          const formData = new FormData(form);
+
+          // CSRF Token ko form data mein add karein
+          const csrfToken = document.getElementById("csrfToken").value;
+          formData.append("_csrf", csrfToken);
+
+          // Show loader
+          document.getElementById("loader").classList.remove("d-none");
+
+          // Validation logic
+          if (
+            !formData.get("name") ||
+            !formData.get("email") ||
+            !formData.get("phone") ||
+            !formData.get("educationalQualification") ||
+            !formData.get("experience") ||
+            !formData.get("city") ||
+            !formData.get("state") ||
+            !formData.get("resume")
+          ) {
+            document.querySelector("#form_status").innerHTML =
+              '<div class="alert alert-danger" role="alert">Please fill all the fields!</div>';
+            document.getElementById("loader").classList.add("d-none");
+            return;
+          }
+
+          axios
+            .post(
+              "http://localhost:8080/api/v1/candidate/form-submit",
+              formData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+                withCredentials: true,
+              }
+            )
+            .then((response) => {
+              const responseData = response.data;
+              if (responseData.success) {
+                // Hide loader and show success message
+                document.getElementById("loader").classList.add("d-none");
+                document
+                  .getElementById("success-message")
+                  .classList.remove("d-none");
+                form.reset(); // Reset form
+              } else {
+                document.querySelector(
+                  "#form_status"
+                ).innerHTML = `<div class="alert alert-danger" role="alert">${responseData.message}</div>`;
+                document.getElementById("loader").classList.add("d-none");
+              }
+            })
+            .catch((error) => {
+              let errorMessage = "Failed to submit form!";
+              if (error.response && error.response.data) {
+                errorMessage = error.response.data.message || errorMessage;
+              }
+              document.querySelector(
+                "#form_status"
+              ).innerHTML = `<div class="alert alert-danger" role="alert">${errorMessage}</div>`;
+              document.getElementById("loader").classList.add("d-none");
+            });
+        });
+    </script>
+  </body>
+</html>

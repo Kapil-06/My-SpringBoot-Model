@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+
+<head>
+    <!--required meta tags-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Amigo Dheena">
+    <!--favicon icon-->
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="16x16" />
+
+    <!--title-->
+    <title>SKY IT Best Recruiters & IT Services </title>
+    <meta name="description" content="" />
+
+    <!--google fonts-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&amp;family=Urbanist:wght@600;700&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!--build:css-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- endbuild -->
+
+    <!--custom css-->
+    <link rel="stylesheet" href="assets/css/custom.css" />
+
+</head>
+
+<body>
+
+    <!--body overlay -->
+    <div class="body-overlay"></div>
+
+    <!--scrolltop button -->
+    <button class="scrolltop-btn"><i class="fa-solid fa-angle-up"></i></button>
+
+    <!--preloader start-->
+    <div class="loader-wrap">
+        <div class="preloader">
+            <div id="handle-preloader" class="handle-preloader">
+                <div class="animation-preloader">
+                    <div class="spinner"></div>
+                    <div class="txt-loading">
+                        <a href="index.html" class="logo-black"><img src="assets/img/logo.png" alt="logo"
+                                class="logo"></a>
+                        <!-- <span data-text-preloader="J" class="letters-loading">J</span>
+                    <span data-text-preloader="P" class="letters-loading">P</span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--preloader end-->
+    <!--main content wrapper start-->
+    <div class="main-wrapper">
+
+        <!--header area start-->
+        <header class="header-section header-gradient">
+            <div class="topbar">
+                <div class="container">
+                    <div class="row align-item-center">
+                        <div class="col-md-6">
+                            <div class="topbar-left">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="topbar-right text-end">
+                                <!-- <a href=""><i class="fa-solid fa-phone"> </i>  +91 </a> -->
+                                <a href="mailto:info@theskyit.com"> <i class="fa-solid fa-envelope"> </i>
+                                    info@theskyit.com</a>
+                                <a href="mailto:hr@theskyit.com"> hr@theskyit.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="navbar-container"></div>
+        </header>
+        <!--header area end-->
+        <script>
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+        </script>
+        <!--mobile menu start-->
+    </div>
+    <!--mobile menu end-->
+    <!--breadcrumb area start-->
+    <section class="breadcrumb-area bg-primary-gradient">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h2 class="mb-3">Contact</h2>
+                <nav>
+                    <ol class="breadcrumb">
+
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <!--breadcrumb area end-->
+
+    <!--breadcrumb area start-->
+    <section class="hero-style-1 contact-hero bg-white">
+        <div class="hm-contact-info promo-area position-relative pt-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!-- <div class="col-lg-4 col-md-6 col-sm-10">
+                        <div class="hm-ct-info-wrapper rounded">
+                            <span
+                                class="icon-wrapper rounded-circle d-inline-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-phone"></i>
+                            </span>
+                            <div class="info-content mt-4">
+                                <h4>Phone</h4>
+
+                                <strong class="text-primary">Jobs</strong><br>
+                                <strong> HR Department</strong>
+                                <span></span>
+
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-4 col-md-6 col-sm-10">
+                        <div class="hm-ct-info-wrapper rounded">
+                            <span class="icon-wrapper rounded-circle d-inline-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-at"></i>
+                            </span>
+                            <div class="info-content mt-4">
+                                <h4>Email Us</h4>
+                                <strong class="text-primary">Sales & Business Development</strong><br>
+                                <!-- Placeholder for business emails -->
+                                <span id="business-email-1"></span><br>
+                                <span id="business-email-2"></span><br>
+                                <span id="business-email-3"></span><br>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 col-sm-10">
+                        <div class="hm-ct-info-wrapper rounded">
+                            <span class="icon-wrapper rounded-circle d-inline-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-at"></i>
+                            </span>
+                            <div class="info-content mt-4">
+                                <h4>Email Us</h4>
+                                <strong class="text-primary">HR Department</strong><br>
+                                <!-- Placeholder for HR emails -->
+                                <span id="hr-email-1"></span><br>
+                                <span id="hr-email-2"></span><br>
+                                <span id="hr-email-3"></span><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-10">
+                        <div class="hm-ct-info-wrapper rounded">
+                            <span class="icon-wrapper rounded-circle d-inline-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-house"></i>
+                            </span>
+                            <div class="info-content mt-4">
+                                <h4>Address</h4>
+                                <strong class="text-primary">HO</strong><br>
+                                <!-- Placeholder for address1 and address2 -->
+                                <span id="address-1"></span><br>
+                                <span id="address-2"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d18840.899663110493!2d72.7883325!3d21.1261493!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be0531c6fbccc51%3A0x1fd405bfc18dc0eb!2sTHE%20SKY%20IT!5e1!3m2!1sen!2sin!4v1732563007796!5m2!1sen!2sin"
+        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <!--contact form end -->
+
+    <!--footer section start-->
+
+    <!--footer section end-->
+    </div>
+    <!-- main content wrapper ends -->
+
+
+    <!--build:js-->
+    <script src="assets/js/vendors/jquery.min.js"></script>
+    <script src="assets/js/vendors/popper.min.js"></script>
+    <script src="assets/js/vendors/bootstrap.min.js"></script>
+    <script src="assets/js/vendors/easing.min.js"></script>
+    <script src="assets/js/vendors/swiper.min.js"></script>
+    <script src="assets/js/vendors/massonry.min.js"></script>
+    <script src="assets/js/vendors/bootstrap-slider.js"></script>
+    <script src="assets/js/vendors/magnific-popup.js"></script>
+    <script src="assets/js/vendors/waypoints.js"></script>
+    <script src="assets/js/vendors/counterup.js"></script>
+    <script src="assets/js/vendors/isotop.pkgd.min.js"></script>
+    <script src="assets/js/vendors/countdown.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <!--endbuild-->
+
+
+    <script>
+        // Function to fetch and display business emails
+        async function fetchBusinessEmails() {
+            try {
+                const response = await fetch('http://localhost:8080/contact/get-business-contact');
+                const data = await response.json();
+                const { businessEmail1, businessEmail2, businessEmail3 } = data.data;
+    
+                // Update the HTML with fetched emails
+                document.getElementById('business-email-1').textContent = businessEmail1;
+                document.getElementById('business-email-2').textContent = businessEmail2;
+                document.getElementById('business-email-3').textContent = businessEmail3;
+            } catch (error) {
+                console.error('Error fetching business emails:', error);
+            }
+        }
+    
+        // Function to fetch and display HR emails
+        async function fetchHREmails() {
+            try {
+                const response = await fetch('http://localhost:8080/contact/get-hr-contact');
+                const data = await response.json();
+                const { hrEmail1, hrEmail2, hrEmail3 } = data.data;
+    
+                // Update the HTML with fetched emails
+                document.getElementById('hr-email-1').textContent = hrEmail1;
+                document.getElementById('hr-email-2').textContent = hrEmail2;
+                document.getElementById('hr-email-3').textContent = hrEmail3;
+            } catch (error) {
+                console.error('Error fetching HR emails:', error);
+            }
+        }
+    
+        // Call the functions to fetch and display data
+        fetchBusinessEmails();
+        fetchHREmails();
+
+        // Function to fetch and display address data
+    async function fetchAddress() {
+        try {
+            const response = await fetch('http://localhost:8080/contact/get-contact');
+            const data = await response.json();
+            const { address1, address2 } = data.data[0]; // Extract address1 and address2 from the first object in the array
+
+            // Update the HTML with fetched addresses
+            document.getElementById('address-1').textContent = address1;
+            document.getElementById('address-2').textContent = address2;
+        } catch (error) {
+            console.error('Error fetching address data:', error);
+        }
+    }
+
+    // Call the function to fetch and display address data
+    fetchAddress();
+    </script>
+</body>
+
+
+<!-- Mirrored from www.jprecruiters.in/contact.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Nov 2024 16:18:50 GMT -->
+
+</html>

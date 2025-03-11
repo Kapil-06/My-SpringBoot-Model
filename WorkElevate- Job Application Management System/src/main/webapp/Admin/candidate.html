@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Sidebar - Candidates</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/9ad568764d.js" crossorigin="anonymous"></script>
+  <style>
+  
+    .remove-btn {
+      margin-left: 8px;
+      cursor: pointer;
+    }
+
+    .loader {
+      border-top-color: #3498db;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #customAlert {
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed lg:static transform -translate-x-full lg:translate-x-0 transition-transform duration-300 bg-gradient-to-t from-cyan-500 to-blue-500 text-white w-80 min-h-screen flex flex-col p-4 font-bold z-50">
+      <button  class="btn block  focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-1/5 ml-3 lg:hidden" id="close-sidebar">
+        <i class="fa-solid fa-xmark "></i>
+      </button>
+      <ul class="menu text-xl">
+        <li class="mb-2"><a href="./index.html" class="hover:bg-blue-600 rounded-md p-2"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+        <hr class="my-4 w-full border-white" />
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2"  href="./candidate.html"><i class="fa-solid fa-person"></i>Candidates</a></li>
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2" href="./jobpost.html"><i class="fa-solid fa-briefcase"></i>Job Posts</a></li>
+        <li class="relative mb-2">
+            <a href="#" class="rounded-md p-2 flex items-center" id="pagesDropdownButton">
+              <i class="fa-solid fa-file-lines"></i> Pages
+            </a>
+            <ul class="absolute left-0 mt-10 w-full  text-white rounded-md  hidden" id="pagesDropdownMenu">
+              
+                <li><a href="./partner.html" class="block px-4 py-2 rounded-md">Upload Client Logo</a></li>
+                <li><a href="./hrcontact.html" class="block px-4 py-2 rounded-md">Upload Contact</a></li>
+                <!-- <li><a href="./businesscontact.html" class="block px-4 py-2 rounded-md">Buisness Contact</a></li> -->
+            </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- Main Content -->
+    <div class="flex-1 w-full">
+      <!-- Navbar -->
+      
+      <div class="navbar bg-white  p-4 shadow-md">
+        <h1 class="text-xl font-bold text-black text-center hidden sm:block">Candidates</h1>
+        <div class="flex-1">
+          <!-- Sidebar Toggle Button for Mobile -->
+          <button id="toggle-sidebar" class="btn block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center lg:hidden w-1/5">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+     
+    
+            <button id="logoutButton"  class="text-white font-medium h-10 flex px-2 py-1 justify-center items-center w-20 block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-600">Logout</button>
+         
+      </div>
+
+      <!-- Page Content -->
+      <div class="p-6  w-full">
+        <input type="hidden" name="_csrf" id="csrfToken" />
+        <div class="bg-white shadow-md rounded-xl w-full max-w-8xl">
+          <div class="p-3 rounded-t-xl flex justify-between items-center gap-4">
+            <div class="flex flex-grow px-3 py-3 rounded-md border-2 border-gray-400 overflow-hidden max-w-sm">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Search Something..."
+                    class="w-full outline-none bg-transparent text-gray-600 text-sm ml-5"
+                />
+            </div>
+
+<!-- Modal toggle -->
+<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" 
+        class="block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center" 
+        type="button">
+    <i class="fa-solid fa-filter mr-3"></i> Filter
+</button>
+
+  
+  <!-- Main modal -->
+  <div id="crud-modal" class="hidden fixed top-0 right-20 z-50 flex justify-end items-center w-full h-full">
+      <div class="relative p-4 w-4/2  max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+              <!-- Modal header -->
+              <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                   Filter
+                  </h3>
+                  <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                    <i class="fa-solid fa-xmark "></i>
+                      <span class="sr-only">Close modal</span>
+                  </button>
+              </div>
+              <!-- Modal body -->
+              <form class="p-4 md:p-5">
+                <div class="mb-4">
+                    <div class="">
+                        <label for="rolefilter" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Role</label>
+                        <select id="rolefilter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option value="Select role">Select role</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div class="mb-4">
+                    <div class="">
+                        <label for="educationfilter" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Education</label>
+                        <select id="educationfilter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option selected="">Select education/option>
+                        </select>
+                    </div>
+                </div> -->
+               
+                <div class="mb-4">
+                    <div class="">
+                        <label for="experiencefilter" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Experience</label>
+                        <select id="experiencefilter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option value ="Select experience">Select experience</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <div class="">
+                        <label  class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">State</label>
+                        <select id="statefilter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option value = "Select state">Select state</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                          
+                          </select>
+                          
+                    </div>
+                </div>
+                <div class="flex justify-end gap-3">
+                    <!-- Corrected IDs -->
+                    <button id="resetBtn" class="text-gray-800 font-bold items-center bg-gray-400 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-200 dark:hover:bg-gray-200 dark:focus:ring-gray-200">Reset</button>
+                    <button id="applyBtn" class="text-white font-bold items-center block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Apply</button>
+                </div>
+            </form>
+          </div>
+      </div>
+  </div> 
+  
+
+        </div>
+        <div class="flex justify-between  ml-10 items-center mt-5 flex-col sm:flex-row">
+            <!-- Select Box (Left Side) -->
+            <div class="flex gap-4 mb-4 sm:mb-0">
+              <form class="max-w-sm">
+                  <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option selected>5</option>
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="30">30</option>
+                      <option value="40">40</option>
+                  </select>
+              </form>
+              <p id="recordCount" class="mt-2 text-gray-500 font-medium">Showing 1 to 5 of 5 records</p>
+          </div>
+          <div>
+            <button 
+            id="exportButton"
+        class=" mr-3 block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center" 
+        type="button">Export Candidate
+</button>
+
+          </div>
+           
+          </div>
+          <hr class="my-4 mx-auto border-t-2 border-gray-300"/>
+          <div class="p-4">
+            <div class="">
+                
+                <div class= "  w-full relative bg-white overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <input type="hidden" name="_csrf" id="csrfToken" />
+                        <thead class="text-xs  text-white uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
+                            <tr>
+                                <th scope="col" class="p-4">
+                                    #
+                                  </th>
+                                <th scope="col" class="p-4">
+                                  Sr.No
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Candidate
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Phone Number
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Email
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Education
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                Role
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Location
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Experience
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                  Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                         
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div> 
+  </div>
+  <div id="loader" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+  </div>
+
+  <!-- Custom Alert -->
+  <div id="customAlert" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <p id="alertMessage" class="text-lg"></p>
+        <div class="flex justify-center mt-4">
+            <button id="alertClose" class="bg-blue-500 text-white px-4 py-2 rounded">Close</button>
+        </div>
+    </div>
+</div>
+
+  <script src="./dashboard.js"></script>
+<script src="./candidate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+     // Fetch CSRF token on page load
+     document.addEventListener("DOMContentLoaded", function () {
+            fetch("/csrf-token", {
+                credentials: 'include' // Ensure cookies are sent with the request
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Set CSRF token in the hidden input field
+                document.getElementById("csrfToken").value = data.token;
+            })
+            .catch(error => console.error("Error fetching CSRF token:", error));
+        });
+
+        async function checkSession() {
+      try {
+        const response = await axios.get('http://localhost:8080/api/v1/admin/check-session', {
+          withCredentials: true // Include cookies in the request
+        });
+
+        if (!response.data.success) {
+          // If session is invalid, redirect to login page
+          window.location.href = '/admin-login.html';
+        }
+      } catch (error) {
+        console.error('Session check failed:', error);
+        window.location.href = '/admin-login.html';
+      }
+    }
+
+    // Call the function when the page loads
+    //checkSession();  
+    setInterval(checkSession, 600);
+    
+    document.getElementById('logoutButton').addEventListener('click', async function () {
+    try {
+      const _csrf = document.getElementById("csrfToken").value;
+        const response = await fetch('http://localhost:8080/api/v1/admin/logout', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': _csrf  // Add CSRF token to headers
+            },
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+         
+            window.location.href = '/admin-login.html';
+        } else {
+           
+        }
+    } catch (error) {
+        // console.error('Error during logout:', error);
+    }
+    });
+
+    let allCandidates = []; // Store all candidates data globally
+
+    // Fetch data from the API and populate the table
+    async function fetchData() {
+        try {
+           // const response = await fetch('http://localhost:8080/api/v1/candidate/all/candidate'); // Replace with your API URL
+            const response = await fetch('http://localhost:8080/api/v1/candidate/all/candidate', {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+            },
+                credentials: 'include', // Include credentials if needed
+            });
+            const data = await response.json();
+            console.log("Fetched data:", data);
+            allCandidates = data; // Store all candidates data
+            
+            populateTable(data); // Populate the table with all data
+            populateRoleDropdown(data); // Populate the role dropdown based on candidate roles
+            populateExperienceDropdown(data)
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+
+    // Function to populate the table
+    function populateTable(candidates) {
+        const tableBody = document.querySelector("tbody");
+        tableBody.innerHTML = ''; // Clear existing table rows
+        
+        candidates.reverse().forEach((candidate, index) => {
+            const row = document.createElement('tr');
+            row.classList.add('bg-white', 'border-b', 'dark:bg-gray-800', 'dark:border-gray-700', 'border-gray-200');
+            
+            row.innerHTML = `
+                         <td class="w-4 p-4">
+              <div class="flex items-center mb-4">
+                    <input type="checkbox" class="candidate-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" data-candidate-id="${candidate.id}">
+                      </div>
+                            </td>
+
+                <td class="w-4 p-4">${index + 1}</td>
+                <th scope="row"  class="flex items-center px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
+                    <div class="ps-3">
+                        <div class="text-base font-semibold">${candidate.name}</div>
+                    </div>
+                </th>
+                <td class="px-6 py-4">
+                    <div class="font-normal text-white mb-1 flex">
+                        <i class="fa-solid fa-phone mr-2 mt-1"></i>${candidate.phone}</div>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center text-white">
+                        <i class="fa-solid fa-envelope mr-2 mt-1"></i>${candidate.email}
+                    </div>
+                </td>
+                <td class="px-6 py-4 text-white">${candidate.educationalQualification}</td>
+                <td class="px-6 py-4">
+                    <p class="font-semibold text-white">${candidate.role}</p>
+                </td>
+                <th scope="row" class="flex items-center px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
+                    <div class="ps-3">
+                        <div class="text-base font-semibold">${candidate.state}</div>
+                          <div class=" font-semibold">${candidate.city}</div>
+                    </div>
+                </th>
+                <td class=" text-white px-6 py-4">${candidate.experience}  </td>
+                <td class="px-6 py-4 flex gap-2">
+                    <button class="download-btn rounded-md p-2" data-candidate-id="${candidate.id}">
+                    <i class="fa-solid text-xl text-blue-500 fa-download"></i>
+                    </button>
+                     <button class=" rounded-md p-2 delete-button" data-job-id="${candidate.id}">
+                              <i class="fa-solid fa-trash text-xl text-red-500"></i>
+                          </button>
+                </td>
+            `;
+
+            tableBody.appendChild(row);
+            updateRecordCount(candidates);
+
+              // Add event listener to the download button
+        const downloadButton = row.querySelector('.download-btn');
+        downloadButton.addEventListener('click', function () {
+            const candidateId = downloadButton.getAttribute('data-candidate-id');
+            downloadResume(candidateId);
+        });
+
+            // Add event listener to the delete button
+            const deleteButton = row.querySelector('.delete-button');
+            deleteButton.addEventListener('click', function() {
+                const jobId = deleteButton.getAttribute('data-job-id');
+                deleteJob(jobId);
+            });
+        });
+    }
+
+    // Function to download resume
+function downloadResume(candidateId) {
+    const url = `http://localhost:8080/api/v1/admin/download/resume/${candidateId}`;
+
+    // Trigger the file download
+    fetch(url, {
+        method: 'GET',
+        _csrf: csrfToken ,
+        headers: {
+            'Content-Type': 'application/pdf', // Assuming PDF format
+            withCredentials: true
+        },
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.blob(); // Get the file as Blob
+        }
+        throw new Error('Failed to download the resume');
+    })
+    .then(blob => {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob); // Create a URL for the Blob
+        link.download = `resume-${candidateId}.pdf`; // Set the filename
+        link.click(); // Trigger the download
+    })
+    .catch(error => {
+        // console.error('Error downloading resume:', error);
+        // alert('Error downloading the resume. Please try again.');
+    });
+}
+
+    // Function to populate the role dropdown
+    function populateRoleDropdown(candidates) {
+        const categorySelect = document.getElementById('rolefilter');
+        const roles = [...new Set(candidates.map(candidate => candidate.role))]; // Extract unique roles
+        categorySelect.innerHTML = '<option selected="">Select role</option>';
+        roles.forEach(role => {
+            const option = document.createElement('option');
+            option.value = role;
+            option.textContent = role;
+            categorySelect.appendChild(option);
+        });
+    }
+
+
+function populateExperienceDropdown(candidates) {
+    const experienceSelect = document.getElementById('experiencefilter');
+    const experiences = [...new Set(candidates.map(candidate => candidate.experience))]; // Extract unique experiences
+    experienceSelect.innerHTML = '<option selected="">Select experience</option>';
+    experiences.forEach(experience => {
+        const option = document.createElement('option');
+        option.value = experience;
+        option.textContent = experience;
+        experienceSelect.appendChild(option);
+    });
+}
+
+
+document.getElementById('applyBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    // Get selected values from all dropdowns
+    const selectedRole = document.getElementById('rolefilter').value;
+    const selectedExperience = document.getElementById('experiencefilter').value;
+    const selectedState = document.getElementById("statefilter").value;
+
+    // Filter candidates based on selected values
+    let filteredCandidates = allCandidates;
+
+    if (selectedRole && selectedRole !== 'Select role') {
+        filteredCandidates = filteredCandidates.filter(candidate => candidate.role === selectedRole);
+    }
+
+    if (selectedState && selectedState !== 'Select state') {
+        filteredCandidates = filteredCandidates.filter(candidate => candidate.state === selectedState);
+    }
+
+
+  
+
+    if (selectedExperience && selectedExperience !== 'Select experience') {
+        filteredCandidates = filteredCandidates.filter(candidate => candidate.experience === selectedExperience);
+    }
+
+    // Populate the table with the filtered candidates
+    populateTable(filteredCandidates);
+});
+
+   
+  
+    // Reset the table to show all data
+    document.getElementById('resetBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('rolefilter').value = ''; // Reset the dropdown
+        document.getElementById('experiencefilter').value = '';
+        document.getElementById("statefilter").value = ''
+        populateTable(allCandidates); // Populate table with all data
+    });
+
+    function filterTable(searchQuery) {
+      const filteredJobs = allCandidates.filter(job => {
+          // Convert search query and job data to lowercase for case-insensitive search
+          const query = searchQuery.toLowerCase();
+          const candName = job.name.toLowerCase();
+          const candPhone = job.phone.toLowerCase();
+          const candEmail = job.email.toLowerCase(); 
+          const experience = job.experience.toString().toLowerCase();
+          const education = job.educationalQualification.toLowerCase();
+          const location = job.location.toLowerCase();
+
+          // Check if any field matches the search query
+          return (
+              candName.includes(query) ||
+              candPhone.includes(query) ||
+              candEmail.includes(query) ||
+              experience.includes(query) ||
+              education.includes(query) ||
+              location.includes(query)
+          );
+      });
+
+      // Populate the table with filtered data
+      populateTable(filteredJobs);
+  }
+
+  // Add event listener to the search input
+  document.getElementById('searchInput').addEventListener('input', function(e) {
+      const searchQuery = e.target.value.trim(); // Get the search query
+      filterTable(searchQuery); // Filter the table data
+  });
+
+   // Function to update the record count text
+function updateRecordCount(candidates) {
+    const recordCountText = document.getElementById('recordCount');
+    const totalRecords = allCandidates.length;
+    const recordsDisplayed = candidates.length;
+    recordCountText.textContent = `Showing 1 to ${recordsDisplayed} of ${totalRecords} records`;
+}
+
+// Function to apply filters or show a subset of records based on selection
+document.getElementById('countries').addEventListener('change', function(e) {
+    const recordsToShow = parseInt(e.target.value, 10); // Get the selected value (5, 10, etc.)
+    const slicedCandidates = allCandidates.slice(0, recordsToShow); // Slice the array based on the selection
+    populateTable(slicedCandidates); // Populate the table with the sliced data
+});
+
+document.getElementById('exportButton').addEventListener('click', function () {
+  // Get selected filters
+  const selectedRole = document.getElementById('rolefilter').value;
+  const selectedExperience = document.getElementById('experiencefilter').value;
+  const selectedState = document.getElementById('statefilter').value;
+
+  // Get selected candidate IDs
+  const selectedCandidateIds = [];
+  document.querySelectorAll('.candidate-checkbox:checked').forEach(checkbox => {
+    selectedCandidateIds.push(checkbox.getAttribute('data-candidate-id'));
+  });
+  console.log('Selected Candidate IDs:', selectedCandidateIds); // Debugging
+
+  // Construct base URL
+  let exportUrl = 'http://localhost:8080/api/v1/admin/export/candidates/by-filters';
+
+  // Add query parameters
+  const queryParams = [];
+  if (selectedRole && selectedRole !== 'Select role') {
+    queryParams.push(`role=${encodeURIComponent(selectedRole)}`);
+  }
+  if (selectedExperience && selectedExperience !== 'Select experience') {
+    queryParams.push(`experience=${encodeURIComponent(selectedExperience)}`);
+  }
+  if (selectedState && selectedState !== 'Select state') {
+    queryParams.push(`state=${encodeURIComponent(selectedState)}`);
+  }
+  if (selectedCandidateIds.length > 0) {
+    queryParams.push(`id=${encodeURIComponent(selectedCandidateIds.join(','))}`);
+  }
+  if (queryParams.length > 0) {
+    exportUrl += `?${queryParams.join('&')}`;
+  }
+  console.log('Export URL:', exportUrl); // Debugging
+
+  // Fetch and download the file
+  fetch(exportUrl, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to export candidates');
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      if (!blob) {
+        throw new Error('No file returned from the server');
+      }
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'selected_candidates.xlsx';
+      link.click();
+      window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+      console.error('Error downloading file:', error);
+      alert('An error occurred while downloading the file');
+    });
+});
+
+
+
+    // Function to delete a candidate
+    function deleteJob(jobId) {
+        const _csrf = document.getElementById("csrfToken").value
+        fetch(`http://localhost:8080/api/v1/candidate/delete-candidate/${jobId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': _csrf,  // Correctly add CSRF token inside headers
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // alert("Deleted successfully");
+            document.getElementById('loader').classList.add('hidden');
+            // Show custom alert
+            document.getElementById('alertMessage').textContent = 'Candidate deleted successfully!';
+            document.getElementById('customAlert').classList.remove('hidden');
+            fetchData(); // Refresh the table after deletion
+        })
+        .catch(error => {
+            // console.error('Error deleting candidate:', error);
+            document.getElementById('loader').classList.add('hidden');
+            // Show custom alert
+            document.getElementById('alertMessage').textContent = 'Failed to delete candidate!';
+            document.getElementById('customAlert').classList.remove('hidden');
+        });
+    }
+
+    document.getElementById('alertClose').addEventListener('click', function () {
+        document.getElementById('customAlert').classList.add('hidden');
+    });
+    // Fetch data when the page loads
+    window.onload = fetchData;
+</script>
+</body>
+</html>

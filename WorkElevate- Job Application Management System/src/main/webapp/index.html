@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+
+<head>
+    <!--required meta tags-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <!--favicon icon-->
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="16x16" />
+
+    <!--title-->
+    <title>SKY IT Best Recruiters & IT Services </title>
+    <meta name="description" content="" />
+
+    <!--google fonts-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&amp;family=Urbanist:wght@600;700&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!--build:css-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- endbuild -->
+
+    <!--custom css-->
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <!--body overlay -->
+    <div class="body-overlay"></div>
+
+    <!--scrolltop button -->
+    <button class="scrolltop-btn"><i class="fa-solid fa-angle-up"></i></button>
+
+    <!--preloader start-->
+    <div class="loader-wrap">
+        <div class="preloader">
+            <div id="handle-preloader" class="handle-preloader">
+                <div class="animation-preloader">
+                    <div class="spinner"></div>
+                    <div class="txt-loading">
+                        <a href="index.html" class="logo-black"><img src="./assets/img/home7/Logo.png" alt="logo"
+                                class="logo"></a>
+                        <!-- <span data-text-preloader="J" class="letters-loading">J</span>
+                    <span data-text-preloader="P" class="letters-loading">P</span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--preloader end-->
+    <!--main content wrapper start-->
+    <div class="main-wrapper">
+
+        <!--header area start-->
+        <header class="header-section header-gradient">
+            <div class="topbar">
+                <div class="container">
+                    <div class="row align-item-center">
+                        <div class="col-md-6">
+                            <div class="topbar-left">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="topbar-right text-end">
+                                <!-- <a href=""><i class="fa-solid fa-phone"> </i>  +91 </a> -->
+                                <a href="mailto:info@theskyit.com"> <i class="fa-solid fa-envelope"> </i>
+                                    info@theskyit.com</a>
+                                <a href="mailto:hr@theskyit.com"> hr@theskyit.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="navbar-container"></div>
+        </header>
+        <script>
+
+
+document.addEventListener("DOMContentLoaded", function() {
+            fetch('http://localhost:8080/image/get?ids=')
+                .then(response => response.json())
+                .then(data => {
+                    const slider = document.getElementById('client-images-slider');
+                    data.forEach(item => {
+                        const imgDiv = document.createElement('div');
+                        imgDiv.className = 'feagure-img swiper-slide';
+
+                        const img = document.createElement('img');
+                        img.src = 'data:image/jpeg;base64,' + item.body.data;
+                        img.className = 'img-fluid';
+                        
+                        imgDiv.appendChild(img);
+                        slider.appendChild(imgDiv);
+                    });
+
+                    // Initialize Swiper after images are loaded
+                    const swiper = new Swiper('.swiper', {
+                        loop: true,
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                    });
+                })
+                .catch(error => console.error('Error fetching images:', error));
+        });
+
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+        </script>
+        <!--header area end-->
+
+        <!--mobile menu start-->
+        <div class="mobile-menu position-fixed bg-white deep-shadow">
+            <button class="close-menu position-absolute">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <a href="index.html" class="logo-wrapper">
+              <img src="./assets/img/home7/Logo.png" alt="logo" class="logo logo-black" />
+            </a>
+            <a href="index.html" class="logo-wrapper">
+              <img src="assets/img/logo-white.png" alt="logo" class="logo logo-white" />
+            </a>
+            <nav class="mobile-menu-wrapper mt-40">
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="has-submenu">
+                  <a href="services.html">Services</a>
+                  <ul class="submenu-wrapper">
+                    <li><a href="services.html">Permanent Staffing</a></li>
+                    <li><a href="services.html">Contract Hiring</a></li>
+                    <li><a href="services.html">HR Recruitment Outsourcing</a></li>
+                    <li><a href="services.html">Digital Marketing</a></li>
+                    <li><a href="services.html">Web & App Development</a></li>
+                  </ul>
+                </li>
+                <li><a href="area-expertise.html">Our Expertise</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <!-- Login Tab Added Here -->
+                
+              </ul>
+              <!-- Added Current Openings button for mobile -->
+              <div class="mobile-menu-btn mt-30">
+                <a
+                  href="current-openings.html"
+                  class="template-btn primary-btn btn-small w-100 text-center"
+                >
+                  Current Openings
+                </a>
+              </div>
+            </nav>
+          
+            <div class="contact-info mt-60">
+              <p>Surat</p>
+              <p>info@theskyit.com</p>
+              <div class="contact-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        <!--mobile menu end-->
+        <!--hero section start-->
+        <section class="hm7-hero-section position-relative zindex-1 overflow-hidden">
+            <div class="hm7-hero-slider swiper">
+                <div class="swiper-wrapper">
+                    <div class="slider-hero-single position-relative zindex-1 swiper-slide"
+                        data-background="assets/img/home7/hero1.png">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-5 col-lg-7 col-sm-10">
+                                    <div class="hm7-hero-content">
+                                        <p class="text-white"><em>Our Quality Shines Through Your Satisfaction.</em></p>
+                                        <h1 class="display-4 fw-bold text-white mb-4">Reliable solutions for permanent
+                                            staffing needs.</h1>
+                                        <p class="mb-5 text-white">Enjoy peace of mind knowing your sites are fast,
+                                            safe, and secure Join hundreds of other agencies choses.</p>
+                                        <div class="hm7-hero-btns d-flex align-items-center flex-wrap">
+                                            <a href="client-enquiry.html" class="template-btn primary-btn">Recruiter
+                                                Enquiry</a>
+                                            <a href="candidate-enquiry.html" class="template-btn outline-btn">Job
+                                                Seekers Enquiry</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-hero-single position-relative zindex-1 swiper-slide"
+                        data-background="assets/img/home7/hero2.png">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-5 col-lg-7 col-sm-10">
+                                    <div class="hm7-hero-content">
+                                        <p class="text-white"><em>Our Quality Shines Through Your Satisfaction.</em></p>
+                                        <h1 class="display-4 fw-bold text-white mb-4">Flexible solutions for contract
+                                            hiring needs.</h1>
+                                        <p class="mb-5 text-white">Enjoy peace of mind knowing your sites are fast,
+                                            safe, and secure Join hundreds of other agencies choses.</p>
+                                        <div class="hm7-hero-btns d-flex align-items-center flex-wrap">
+                                            <a href="client-enquiry.html" class="template-btn primary-btn">Recruiter
+                                                Enquiry</a>
+                                            <a href="candidate-enquiry.html" class="template-btn outline-btn">Job
+                                                Seekers Enquiry</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-hero-single position-relative zindex-1 swiper-slide"
+                        data-background="assets/img/home7/hero3.png">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-5 col-lg-7 col-sm-10">
+                                    <div class="hm7-hero-content">
+                                        <p class="text-white"><em>Our Quality Shines Through Your Satisfaction.</em></p>
+                                        <h1 class="display-4 fw-bold text-white mb-4">Streamlined HR recruitment
+                                            outsourcing solutions.</h1>
+                                        <p class="mb-5 text-white">Enjoy peace of mind knowing your sites are fast,
+                                            safe, and secure Join hundreds of other agencies choses.</p>
+                                        <div class="hm7-hero-btns d-flex align-items-center flex-wrap">
+                                            <a href="client-enquiry.html" class="template-btn primary-btn">Recruiter
+                                                Enquiry</a>
+                                            <a href="candidate-enquiry.html" class="template-btn outline-btn">Job
+                                                Seekers Enquiry</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-hero-single position-relative zindex-1 swiper-slide"
+                        data-background="assets/img/home7/hero4.png">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-5 col-lg-7 col-sm-10">
+                                    <div class="hm7-hero-content">
+                                        <p class="text-white"><em>Our Quality Shines Through Your Satisfaction.</em></p>
+                                        <h1 class="display-4 fw-bold text-white mb-4">Boost growth with digital
+                                            marketing solutions.</h1>
+                                        <p class="mb-5 text-white">Enjoy peace of mind knowing your sites are fast,
+                                            safe, and secure Join hundreds of other agencies choses.</p>
+                                        <div class="hm7-hero-btns d-flex align-items-center flex-wrap">
+                                            <a href="client-enquiry.html" class="template-btn primary-btn">Recruiter
+                                                Enquiry</a>
+                                            <a href="candidate-enquiry.html" class="template-btn outline-btn">Job
+                                                Seekers Enquiry</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-hero-single position-relative zindex-1 swiper-slide"
+                        data-background="assets/img/home7/hero5.png" hight="50" wight="50">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-5 col-lg-7 col-sm-10">
+                                    <div class="hm7-hero-content">
+                                        <p class="text-white"><em>Our Quality Shines Through Your Satisfaction.</em></p>
+                                        <h1 class="display-4 fw-bold text-white mb-4">Expert web and app development
+                                            solutions.</h1>
+                                        <p class="mb-5 text-white">Enjoy peace of mind knowing your sites are fast,
+                                            safe, and secure Join hundreds of other agencies choses.</p>
+                                        <div class="hm7-hero-btns d-flex align-items-center flex-wrap">
+                                            <a href="client-enquiry.html" class="template-btn primary-btn">Recruiter
+                                                Enquiry</a>
+                                            <a href="candidate-enquiry.html" class="template-btn outline-btn">Job
+                                                Seekers Enquiry</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hm7-hero-slider-next hm7-hero-slide-control"><i class="fas fa-arrow-right"></i></div>
+                <div class="hm7-hero-slider-prev hm7-hero-slide-control"><i class="fas fa-arrow-left"></i></div>
+            </div>
+            <div class="hero-social-2 at-header-social d-none d-sm-flex align-items-center position-absolute">
+                <span class="title">Follow on</span>
+                <ul class="social-list ms-3">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </section>
+        <!--hero section end-->
+
+        <!--about section start-->
+        <section class="hm7-about-section ptb-120 ds-bg overflow-hidden">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                        <div class="hm7-about-left position-relative zindex-1">
+                            <span class="position-absolute circle-shape-gradient zindex--1 rounded-circle"></span>
+                            <img src="assets/img/home7/about.png" alt="not found" class="img-fluid">
+                            <div class="hm7-counter-circle position-absolute rounded-circle bg-white">
+                                <div class="counter-circle-wrapper text-center">
+                                    <h2 class="mb-0 text-white"><span class="counter">5</span>+</h2>
+                                    <span class="fw-bold fs-sm text-white">Years of <br>Experience</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hm7-title">
+                            <h2 class="mb-3">About Us</h2>
+
+                            <p><b class='text-primary'>SKY IT Solutions</b> established in 2019, began with a small team
+                                of three and has since grown into a dedicated workforce of 30 professionals. We
+                                specialize in providing pan-India recruitment and outsourcing services, helping
+                                businesses find the right talent across diverse industries.</p>
+
+                            <p>In addition to recruitment, we offer expert digital marketing solutions that help
+                                businesses enhance their online presence and drive growth. Our services also include
+                                robust cybersecurity solutions to safeguard your digital infrastructure and web & app
+                                development to create innovative and user-friendly digital experiences. At SKY IT, we
+                                are committed to empowering businesses with cutting-edge technology and efficient
+                                workforce solutions.</p>
+
+                            <a href="about.html" class="template-btn primary-btn">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--about section end-->
+
+        <!--service section start-->
+        <section class="hm2-service-section pt-80 pb-80 overflow-hidden position-relative zindex-1 bg-primary-gradient">
+            <img src="assets/img/home2/shape/service-left-circle.svg" alt="circle"
+                class="position-absolute left-top opacity-25">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="service-left">
+                            <img src="assets/img/service-left.png" alt="server" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="service-right">
+                            <h2 class="hm2-title">We're Provide Best Recruitment and IT Services</h2>
+                            <p class="mt-3"><b class='text-primary'>SKY IT Solutions </b> based in Surat, has been
+                                providing exceptional staffing and recruitment services since 2019. </p>
+                            <div class="hm2-service-tab mt-30 mb-40">
+                                <ul class="nav nav-tabs">
+                                    <li>
+                                        <button class="active" data-bs-toggle="tab" data-bs-target="#vission"
+                                            type="button">
+                                            <i class="fa-solid fa-globe"></i>Vission
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button data-bs-toggle="tab" data-bs-target="#mission" type="button">
+                                            <i class="fa-solid fa-earth-asia"></i>Mission
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button data-bs-toggle="tab" data-bs-target="#goal" type="button">
+                                            <i class="fa-solid fa-earth-asia"></i>Goals
+                                        </button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content mt-4">
+                                    <div class="tab-pane fade" id="vission">
+                                        <p>To be a leading provider of innovative recruitment, technology, and digital
+                                            marketing solutions, empowering businesses to thrive in a fast-evolving
+                                            world by delivering exceptional talent and cutting-edge technology</p>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="mission">
+                                        <p>Our mission at SKY IT is to connect businesses with top-tier talent through
+                                            reliable recruitment services, enhance online presence through digital
+                                            marketing, and drive business growth with innovative web and app development
+                                            solutions.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="goal">
+                                        <p>Our goal at SKY IT is to continuously expand our capabilities and reach,
+                                            providing businesses with reliable staffing solutions, advanced digital
+                                            marketing strategies, and innovative web & app development.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="contact.html" class="template-btn hm2-primary-btn rounded-pill">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="assets/img/home2/shape/service-right-bottom.svg" alt="wave"
+                class="position-absolute right-bottom">
+        </section>
+        <!--service section end-->
+
+        <!--Our Services start-->
+        <section class="hm7-application hm7-domain-section">
+            <div class="container">
+                <div class="hm7-application-box">
+                    <div class="row">
+                        <div class="col-xxl-4 col-xl-5">
+                            <div class="section-title pt-xl-5 text-center text-xl-start">
+                                <h2 class="text-white mb-0">All Our Services</h2>
+                                <hr>
+                                <h5 class="hm7-subtitle fw-semibold mb-2 text-primary">Our Expertise Field</h5>
+
+                                <p class="text-white">Recruitment & Staffing Solutions/Outsourcing Services/Digital
+                                    Marketing Services/Web & App Development/Consulting & Training...</p>
+                            </div>
+                        </div>
+                        <div class="col-xxl-8 col-xl-7">
+                            <div class="hm7-application-slider swiper mt-5 mt-xl-0 pb-4">
+                                <div class="swiper-wrapper">
+                                    <div class="hm2-app-item hm7-app-item text-center bg-white rounded-2 swiper-slide">
+                                        <div class="feagure-img">
+                                            <img src="assets/img/icon/1.png" alt="wordpress" class="img-fluid">
+                                        </div>
+                                        <div class="app-content mt-4">
+                                            <a href="services.html">
+                                                <h3 class="h6 mb-3">Permanent Staffing</h3>
+                                            </a>
+                                            <p class="mb-20">We maintaining the equilibrium of attracting the best
+                                                quality manpower by following a highly pragmatic but uncomplicated
+                                                approach through our recruitment methodology....</p>
+                                            <a href="services.html" class="explore-btn">Read More<i
+                                                    class="fa-solid fa-plus"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="hm2-app-item hm7-app-item text-center bg-white rounded-2 swiper-slide">
+                                        <div class="feagure-img">
+                                            <img src="assets/img/icon/3.png" alt="wordpress" class="img-fluid">
+                                        </div>
+                                        <div class="app-content mt-4">
+                                            <a href="services.html">
+                                                <h3 class="h6 mb-3">Contract Hiring</h3>
+                                            </a>
+                                            <p class="mb-20">Providing skilled professionals on a contractual basis,
+                                                allowing companies to scale their workforce efficiently for specific
+                                                projects or periods, minimizing HR overheads....</p>
+                                            <a href="services.html" class="explore-btn">Read More<i
+                                                    class="fa-solid fa-plus"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="hm2-app-item hm7-app-item text-center bg-white rounded-2 swiper-slide">
+                                        <div class="feagure-img">
+                                            <img src="assets/img/icon/5.png" alt="wordpress" class="img-fluid">
+                                        </div>
+                                        <div class="app-content mt-4">
+                                            <a href="services.html">
+                                                <h3 class="h6 mb-3">HR Recruitment Outsourcing</h3>
+                                            </a>
+                                            <p class="mb-20">JP Professional Recruiters & Services is an emerging player
+                                                in the field of Recruitment Process Outsourcing (RPO) services. Our team
+                                                is well qualified and experienced to furnish th...</p>
+                                            <a href="services.html" class="explore-btn">Read More<i
+                                                    class="fa-solid fa-plus"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="hm2-app-item hm7-app-item text-center bg-white rounded-2 swiper-slide">
+                                        <div class="feagure-img">
+                                            <img src="assets/img/icon/7.png" alt="wordpress" class="img-fluid">
+                                        </div>
+                                        <div class="app-content mt-4">
+                                            <a href="services.html">
+                                                <h3 class="h6 mb-3">Digital Marketing</h3>
+                                            </a>
+                                            <p class="mb-20">We are also specialized in Organizing Campus Interviews at
+                                                various Educational Institutions depending on the requirement of our
+                                                esteemed clients. The process allows the organizatio...</p>
+                                            <a href="services.html" class="explore-btn">Read More<i
+                                                    class="fa-solid fa-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="hm2-app-item hm7-app-item text-center bg-white rounded-2 swiper-slide">
+                                        <div class="feagure-img">
+                                            <img src="assets/img/icon/8.png" alt="wordpress" class="img-fluid">
+                                        </div>
+                                        <div class="app-content mt-4">
+                                            <a href="services.html">
+                                                <h3 class="h6 mb-3">Web & App Development</h3>
+                                            </a>
+                                            <p class="mb-20">We provide perfect training and development services in
+                                                order to help the companies boost their productivity. We offer effectual
+                                                Training and Development sessions which are meant a...</p>
+                                            <a href="services.html" class="explore-btn">Read More<i
+                                                    class="fa-solid fa-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hm7-app-slide-prev hm7-app-slide-control"><i class="fa-solid fa-arrow-left"></i></div>
+                    <div class="hm7-app-slide-next hm7-app-slide-control"><i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </section>
+        <!--Our Services end-->
+
+        <!--Why Choose Us start-->
+        <section class="moving-section ds-bg ptb-120 overflow-hidden">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="moving-left text-lg-center">
+                            <img src="assets/img/home7/why.jpg" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hm7-title">
+                            <h5 class="hm7-subtitle fw-semibold mb-2">Why Choose Us
+                            </h5>
+                            <h2 class="mb-30">Your Trusted Partner for Recruitment, Technology, and Digital Growth</h2>
+                            <p class="mb-4">Expertise Across Multiple Domains: With a team of experienced professionals,
+                                we offer specialized services in recruitment, digital marketing, web & app development,
+                                and cybersecurity to meet diverse business needs.</p>
+                            <p class="mb-4">Tailored Solutions: At SKY IT, we understand that every business is unique.
+                                We provide customized solutions that align with your specific goals, helping you achieve
+                                success with precision.</p>
+                            <p class="mb-4">Pan-India Reach: Our recruitment and outsourcing services span across the
+                                country, ensuring we connect businesses with the best talent, no matter where they are
+                                located.</p>
+                            <p class="mb-4">Cutting-Edge Technology: We leverage the latest technology to offer
+                                efficient and scalable web development, mobile apps, and cybersecurity solutions,
+                                ensuring your business stays ahead in the digital world.</p>
+                            <p class="mb-4">Proven Track Record: Over 500 satisfied clients trust us to deliver results.
+                                We pride ourselves on building long-term relationships and consistently exceeding
+                                expectations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Why Choose Us end-->
+
+        <!--feedback section start-->
+        <section class="hm7-feedback pb-120 ds-bg overflow-hidden">
+            <div class="container">
+                <div class="row justify-content-center g-5">
+                    <div class="col-xl-5">
+                        <div class="hm7-title text-end">
+                            <h5 class="hm7-subtitle fw-semibold mb-2">
+                                Testimonial
+                            </h5>
+                            <h2 class="mb-0">Read what our Customers Have to say about us.</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-5">
+                        <div class="hm7-desc">
+                            <p class="mb-4">Collaboratively actualize excellent schemas without effective models.
+                                Synergistically engineer functionalized applications rather than backend e-commerce.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-xl-8">
+                        <div class="hm7-feedback-wrapper mb-4">
+                            <div class="hm7-feedback-slider swiper">
+                                <div class="swiper-wrapper">
+                                    <div
+                                        class="hm7-feedback-single border rounded d-flex align-items-center bg-white swiper-slide">
+                                        <div class="clients_info text-center flex-shrink-0">
+                                            <img src="assets/img/testimonial/user.png" alt="client"
+                                                class="rounded-circle img-fluid">
+                                            <h5 class="mt-3 mb-0">Nishun Pandey</h5>
+                                            <span class="fs-sm">HR</span><br>
+                                            <span class="fs-sm text-primary"></span>
+                                        </div>
+                                        <div class="clients_feedback">
+                                            <span class="rating_star">
+                                                <svg width="143" height="24" viewBox="0 0 143 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M12.6792 18.3019L18.1887 16.9057L20.4906 24L12.6792 18.3019ZM25.3585 9.13208H15.6604L12.6792 0L9.69811 9.13208H0L7.84906 14.7925L4.86792 23.9245L12.717 18.2641L17.5472 14.7925L25.3585 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M42.0376 18.3019L47.5471 16.9057L49.849 24L42.0376 18.3019ZM54.7169 9.13208H45.0188L42.0376 0L39.0565 9.13208H29.3584L37.2075 14.7925L34.2263 23.9245L42.0754 18.2641L46.9056 14.7925L54.7169 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M71.3961 18.3019L76.9055 16.9057L79.2074 24L71.3961 18.3019ZM84.0753 9.13208H74.3772L71.3961 0L68.4149 9.13208H58.7168L66.5659 14.7925L63.5847 23.9245L71.4338 18.2641L76.264 14.7925L84.0753 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M100.754 18.3019L106.264 16.9057L108.566 24L100.754 18.3019ZM113.434 9.13208H103.736L100.754 0L97.7733 9.13208H88.0752L95.9243 14.7925L92.9431 23.9245L100.792 18.2641L105.622 14.7925L113.434 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M130.113 18.3019L135.622 16.9057L137.924 24L130.113 18.3019ZM142.792 9.13208H133.094L130.113 0L127.132 9.13208H117.434L125.283 14.7925L122.302 23.9245L130.151 18.2641L134.981 14.7925L142.792 9.13208Z"
+                                                        fill="#F8B800" />
+                                                </svg>
+                                                <p class="mb-0 mt-3">SKY IT has been a game-changer for our recruitment
+                                                    process. Their team provided us with the perfect candidates for our
+                                                    open positions, and their professional approach made the entire
+                                                    process seamless. We trust them for all our staffing needs.</p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="hm7-feedback-single border rounded d-flex align-items-center bg-white swiper-slide">
+                                        <div class="clients_info text-center flex-shrink-0">
+                                            <img src="assets/img/testimonial/user.png" alt="client"
+                                                class="rounded-circle img-fluid">
+                                            <h5 class="mt-3 mb-0">Mayur Patil</h5>
+                                            <span class="fs-sm">Advior</span><br>
+                                            <span class="fs-sm text-primary"></span>
+                                        </div>
+                                        <div class="clients_feedback">
+                                            <span class="rating_star">
+                                                <svg width="143" height="24" viewBox="0 0 143 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M12.6792 18.3019L18.1887 16.9057L20.4906 24L12.6792 18.3019ZM25.3585 9.13208H15.6604L12.6792 0L9.69811 9.13208H0L7.84906 14.7925L4.86792 23.9245L12.717 18.2641L17.5472 14.7925L25.3585 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M42.0376 18.3019L47.5471 16.9057L49.849 24L42.0376 18.3019ZM54.7169 9.13208H45.0188L42.0376 0L39.0565 9.13208H29.3584L37.2075 14.7925L34.2263 23.9245L42.0754 18.2641L46.9056 14.7925L54.7169 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M71.3961 18.3019L76.9055 16.9057L79.2074 24L71.3961 18.3019ZM84.0753 9.13208H74.3772L71.3961 0L68.4149 9.13208H58.7168L66.5659 14.7925L63.5847 23.9245L71.4338 18.2641L76.264 14.7925L84.0753 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M100.754 18.3019L106.264 16.9057L108.566 24L100.754 18.3019ZM113.434 9.13208H103.736L100.754 0L97.7733 9.13208H88.0752L95.9243 14.7925L92.9431 23.9245L100.792 18.2641L105.622 14.7925L113.434 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M130.113 18.3019L135.622 16.9057L137.924 24L130.113 18.3019ZM142.792 9.13208H133.094L130.113 0L127.132 9.13208H117.434L125.283 14.7925L122.302 23.9245L130.151 18.2641L134.981 14.7925L142.792 9.13208Z"
+                                                        fill="#F8B800" />
+                                                </svg>
+                                                <p class="mb-0 mt-3">The digital marketing solutions provided by SKY IT
+                                                    have transformed our online presence. Their expertise in SEO and
+                                                    social media marketing has helped us reach new audiences and
+                                                    increase conversions. We highly recommend their services.</p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="hm7-feedback-single border rounded d-flex align-items-center bg-white swiper-slide">
+                                        <div class="clients_info text-center flex-shrink-0">
+                                            <img src="assets/img/testimonial/user.png" alt="client"
+                                                class="rounded-circle img-fluid">
+                                            <h5 class="mt-3 mb-0">Janit Patel</h5>
+                                            <span class="fs-sm">CEO </span><br>
+                                            <span class="fs-sm text-primary"></span>
+                                        </div>
+                                        <div class="clients_feedback">
+                                            <span class="rating_star">
+                                                <svg width="143" height="24" viewBox="0 0 143 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M12.6792 18.3019L18.1887 16.9057L20.4906 24L12.6792 18.3019ZM25.3585 9.13208H15.6604L12.6792 0L9.69811 9.13208H0L7.84906 14.7925L4.86792 23.9245L12.717 18.2641L17.5472 14.7925L25.3585 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M42.0376 18.3019L47.5471 16.9057L49.849 24L42.0376 18.3019ZM54.7169 9.13208H45.0188L42.0376 0L39.0565 9.13208H29.3584L37.2075 14.7925L34.2263 23.9245L42.0754 18.2641L46.9056 14.7925L54.7169 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M71.3961 18.3019L76.9055 16.9057L79.2074 24L71.3961 18.3019ZM84.0753 9.13208H74.3772L71.3961 0L68.4149 9.13208H58.7168L66.5659 14.7925L63.5847 23.9245L71.4338 18.2641L76.264 14.7925L84.0753 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M100.754 18.3019L106.264 16.9057L108.566 24L100.754 18.3019ZM113.434 9.13208H103.736L100.754 0L97.7733 9.13208H88.0752L95.9243 14.7925L92.9431 23.9245L100.792 18.2641L105.622 14.7925L113.434 9.13208Z"
+                                                        fill="#F8B800" />
+                                                    <path
+                                                        d="M130.113 18.3019L135.622 16.9057L137.924 24L130.113 18.3019ZM142.792 9.13208H133.094L130.113 0L127.132 9.13208H117.434L125.283 14.7925L122.302 23.9245L130.151 18.2641L134.981 14.7925L142.792 9.13208Z"
+                                                        fill="#F8B800" />
+                                                </svg>
+                                                <p class="mb-0 mt-3">SKY IT's recruitment team is top-notch. They not
+                                                    only understood our company culture but also brought in high-quality
+                                                    candidates who fit perfectly within our team. Their professionalism
+                                                    and efficiency are unmatched</p>
+                                            </span>
+                                        </div>
+                                    </div>
+
+        </section>
+        <!--feedback section end-->
+
+        <!-- Our Clients start-->
+        <section class="mn-application-section pt-4 pb-120 ds-bg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-8">
+                        <div class="mn-title-2 text-center">
+                            <h2 class="mb-2">Our Domestic and International <mark class="position-relative">Clients <img
+                                    src="assets/img/shapes/line-shape-blue.png" alt=""
+                                    class="position-absolute line-shape"></mark></h2>
+                            <p class="mb-0">Market-driven content Dynamically cultivate front-end schemas parallel
+                                infrastructures without market-driven .</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <!-- New -->
+                    <div class="col-xl-12">
+                        <div class="h4-apps-slider swiper pb-3">
+                            <div class="swiper-wrapper" id="client-images-slider">
+                                <!-- Images will be inserted here dynamically -->
+                            </div>
+                            <!-- Add Swiper navigation buttons -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                    <!-- New -->
+                </div>
+            </div>
+        </section>
+        <!-- Our Clients end-->
+
+        <!--footer section start-->
+
+        <!--footer section end-->
+    </div>
+    <!-- main content wrapper ends -->
+
+
+    <!--build:js-->
+    <script src="assets/js/vendors/jquery.min.js"></script>
+    <script src="assets/js/vendors/popper.min.js"></script>
+    <script src="assets/js/vendors/bootstrap.min.js"></script>
+    <script src="assets/js/vendors/easing.min.js"></script>
+    <script src="assets/js/vendors/swiper.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/vendors/massonry.min.js"></script>
+    <script src="assets/js/vendors/bootstrap-slider.js"></script>
+    <script src="assets/js/vendors/magnific-popup.js"></script>
+    <script src="assets/js/vendors/waypoints.js"></script>
+    <script src="assets/js/vendors/counterup.js"></script>
+    <script src="assets/js/vendors/isotop.pkgd.min.js"></script>
+    <script src="assets/js/vendors/countdown.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <!--endbuild-->
+</body>
+
+
+
+<!-- Mirrored from www.jprecruiters.in/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Nov 2024 16:18:34 GMT -->
+
+</html>

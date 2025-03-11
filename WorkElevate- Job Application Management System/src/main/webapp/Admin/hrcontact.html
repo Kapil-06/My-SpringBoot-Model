@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Sidebar</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/9ad568764d.js" crossorigin="anonymous"></script>
+  <style>
+    .loader {
+      border-top-color: #3498db;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #customAlert {
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed lg:static transform -translate-x-full lg:translate-x-0 transition-transform duration-300 bg-gradient-to-t from-cyan-500 to-blue-500 text-white w-80 min-h-screen flex flex-col p-4 font-bold z-50">
+      <button class="btn block focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-1/5 ml-3 lg:hidden" id="close-sidebar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <ul class="menu text-xl">
+        <li class="mb-2"><a href="./index.html" class="hover:bg-blue-600 rounded-md p-2"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+        <hr class="my-4 w-full border-white" />
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2" href="./candidate.html"><i class="fa-solid fa-person"></i>Candidates</a></li>
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2" href="./jobpost.html"><i class="fa-solid fa-briefcase"></i>Job Posts</a></li>
+        <li class="relative mb-2">
+          <a href="#" class="rounded-md p-2 flex items-center" id="pagesDropdownButton">
+            <i class="fa-solid fa-file-lines"></i> Pages
+          </a>
+          <ul class="absolute left-0 mt-10 w-full  text-white rounded-md  hidden" id="pagesDropdownMenu">
+            
+              <li><a href="./partner.html" class="block px-4 py-2 rounded-md">Upload Client Logo</a></li>
+              <li><a href="./hrcontact.html" class="block px-4 py-2 rounded-md">Upload Contact</a></li>
+              
+          </ul>
+      </li>
+
+      </ul>
+    </div>
+    <!-- Main Content -->
+    <div class="flex-1">
+      <!-- Navbar -->
+      <div class="navbar bg-white text-neutral-content p-4 shadow-md">
+        <h1 class="text-black text-xl font-bold hidden sm:block">Sky IT Contact Details</h1>
+
+        <div class="flex-1">
+          <!-- Sidebar Toggle Button for Mobile -->
+          <button id="toggle-sidebar" class="btn block tex>t-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center lg:hidden w-1/5">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+        <button id="logoutButton" class="text-white font-medium h-10 flex px-2 py-1 justify-center items-center w-20 block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-600">Logout</button>
+      </div>
+
+      <!-- Page Content -->
+      <div class="p-6" >
+        <form id="contactForm">
+          <input type="hidden" name="_csrf" id="csrfToken" />
+          <div class="p-6">
+            <div class="bg-white shadow-md rounded-xl w-full max-w-full mx-auto">
+              <div class="p-3 rounded-t-xl flex justify-between items-center gap-4">
+                <p class="font-bold text-black text-xl">HR Contact Mail</p>
+              </div>
+              <hr class="my-4 mx-auto border-t-2 border-gray-300" />
+              <div class="p-4">
+               
+                <!-- Email Section -->
+                <div class="flex flex-col lg:flex-row gap-6 mt-3">
+                  <div class="flex flex-col w-full mt-3">
+                    <label class="mb-2 text-black text-sm font-bold">Email
+                      <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" required placeholder="Enter first email" id="hrEmail1" name="hrEmail1" class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none" />
+                   
+                  </div>
+                  <div class="flex flex-col w-full mt-3">
+                    <label class="mb-2 text-black text-sm font-bold">Email</label>
+                    <input type="email" placeholder="Enter second email" id="hrEmail2" name="hrEmail2" class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none" />
+                   
+                  </div>
+                  <div class="flex flex-col w-full mt-3">
+                    <label class="mb-2 text-black text-sm font-bold">Email</label>
+                    <input type="email" placeholder="Enter third email" id="hrEmail3" name="hrEmail3" class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none" />
+                    
+                  </div>
+                </div>
+               
+              </div>
+            </div>
+            <div class="bg-white shadow-md rounded-xl w-full max-w-full mt-10 mx-auto">
+              <div class="p-3 rounded-t-xl flex justify-between items-center gap-4">
+                <p class="font-bold text-black text-xl">Business Contact Mail</p>
+              </div>
+              <hr class="my-4 mx-auto border-t-2 border-gray-300" />
+              <div class="p-4">
+               
+                <!-- Email Section -->
+                <div class="flex flex-col lg:flex-row gap-6 mt-3">
+                  <div class="flex flex-col w-full mt-3">
+                    <label class="mb-2 text-black text-sm font-bold">Email
+                      <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" required placeholder="Enter first email" id="businessEmail1" name="businessEmail1" class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none" />
+                   
+                  </div>
+                  <div class="flex flex-col w-full mt-3">
+                    <label class="mb-2 text-black text-sm font-bold">Email</label>
+                    <input type="email" placeholder="Enter second email" id="businessEmail2" name="businessEmail2" class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none" />
+                   
+                  </div>
+                  <div class="flex flex-col w-full mt-3">
+                    <label class="mb-2 text-black text-sm font-bold">Email</label>
+                    <input type="email" placeholder="Enter third email" id="businessEmail3" name="businessEmail3" class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none" />
+                    
+                  </div>
+                </div>
+               
+               
+              </div>
+            </div>
+            <div class="bg-white shadow-md rounded-xl w-full max-w-full mt-10 mx-auto">
+              <div class="p-4">
+                <div class="flex flex-col lg:flex-row gap-6 mt-3">
+                  <div class="flex flex-col w-full mt-3">
+                    <label class="mb-2 text-black text-sm font-bold">HO ADDRESS
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <textarea type="text" required placeholder="Enter address" id="address1" name="address1" class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none" ></textarea>
+                   
+                  </div>
+                  <div class="flex flex-col w-full mt-3">
+                    <label class="mb-2 text-black text-sm font-bold">Branch Address
+                    </label>
+                    <textarea type="text" placeholder="Enter address" id="address2" name="address2" class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none" ></textarea>
+                   
+                  </div>
+                 
+                </div>
+               
+              </div>
+            </div>
+          </div>
+
+          <!-- Business Enquiry Section -->
+         
+          <!-- Create Contact Button -->
+          <div class="flex justify-center mb-10">
+            <input type="submit" value="Create Contact" class="block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center" />
+          </div>
+        </form>
+      </div>
+      <div class="p-6 w-full">
+        <div class="bg-white shadow-md rounded-xl w-full max-w-full">
+          <div class="p-3 rounded-t-xl flex justify-between items-center gap-4">
+            <div class="flex flex-grow px-3 py-3  overflow-hidden max-w-sm">
+             <h4 class="font-bold text-black text-xl">Department Contact</h4>
+            </div>
+           
+
+
+
+
+        </div>
+          <hr class="my-4 mx-auto border-t-2 border-gray-300"/>
+          <div class="p-4">
+            <div class="">
+                
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+    <table class="w-full text-sm text-left rtl:text-right text-white dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="p-4">
+                  #
+                </th>
+                <th scope="col" class="px-6 py-3 text-white">
+                    Emails(hr)
+                </th>
+                <th scope="col" class="px-6 py-3 text-white">
+                  Emails(Business)
+              </th>
+                <th scope="col" class="px-6 py-3 text-white">
+                    Address1
+                </th>
+                <th scope="col" class="px-6 py-3 text-white">
+                    Address2
+                </th>
+               
+               
+                <th scope="col" class="px-6 py-3 text-white">
+                  Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Data will be populated here dynamically -->
+      </tbody>
+  
+    </table>
+</div>
+
+
+
+
+
+
+
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="loader" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+  </div>
+
+  <!-- Custom Alert -->
+  <div id="customAlert" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <p id="alertMessage" class="text-lg"></p>
+        <div class="flex justify-center mt-4">
+            <button id="alertClose" class="bg-blue-500 text-white px-4 py-2 rounded">Close</button>
+        </div>
+    </div>
+</div>
+ 
+
+  <!-- Axios Library -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./dashboard.js"></script>
+  <script>
+
+    // Function to check session status
+async function checkSession() {
+      try {
+        const response = await axios.get('http://localhost:8080/api/v1/admin/check-session', {
+          withCredentials: true // Include cookies in the request
+        });
+        console.log('Session check response:', response.data);
+        if (!response.data.success) {
+          // If session is invalid, redirect to login page
+          window.location.href = '/admin-login.html';
+        }
+      } catch (error) {
+        
+        console.error('Session check failed:', error);
+        window.location.href = '/admin-login.html';
+      }
+    }
+
+    // Call the function when the page loads
+    //checkSession();
+    setInterval(checkSession, 600);
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Fetch CSRF token when the page loads
+        fetch("/csrf-token", {
+            credentials: 'include' // Ensure cookies are sent with the request
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Set CSRF token in the hidden input field
+            document.getElementById("csrfToken").value = data.token;
+        })
+        .catch(error => console.error("Error fetching CSRF token:", error));
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get CSRF token from the hidden input field
+        const csrfToken = document.getElementById("csrfToken").value;
+
+        // Show loader
+        document.getElementById('loader').classList.remove('hidden');
+
+        // Get email fields
+        const email1 = document.getElementById('hrEmail1').value;
+        const email2 = document.getElementById('hrEmail2').value;
+        const email3 = document.getElementById('hrEmail3').value;
+        const bemail1 = document.getElementById('businessEmail1').value;
+        const bemail2 = document.getElementById('businessEmail2').value;
+        const bemail3 = document.getElementById('businessEmail3').value;
+        const address1 = document.getElementById('address1').value;
+        const address2 = document.getElementById('address2').value;
+        const _csrf = document.getElementById("csrfToken").value;
+
+        // Create the data object containing only the email addresses
+        const data = {
+            hrEmail1: email1,
+            hrEmail2: email2,
+            hrEmail3: email3,
+            businessEmail1: bemail1,
+            businessEmail2: bemail2,
+            businessEmail3: bemail3,
+            address1: address1,
+            address2: address2,
+            _csrf
+        };
+
+        // Send data via POST request to the API
+        fetch('http://localhost:8080/contact/submit-contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                //'X-CSRF-TOKEN': csrfToken  // Add CSRF token to the headers
+            },
+            credentials: 'include',
+            body: JSON.stringify(data), // Send the email data as JSON
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Parse the JSON response
+        })
+        .then(result => {
+          //  console.log('Success:', result);
+            // Hide loader
+            document.getElementById('loader').classList.add('hidden');
+            // Show custom alert
+            document.getElementById('alertMessage').textContent = 'Contact created successfully!';
+            document.getElementById('customAlert').classList.remove('hidden');
+            // Reset the form
+            document.getElementById('contactForm').reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Hide loader
+            document.getElementById('loader').classList.add('hidden');
+            // Show custom alert with error message
+            document.getElementById('alertMessage').textContent = 'Failed to submit contact. Please try again.';
+            document.getElementById('customAlert').classList.remove('hidden');
+        });
+    });
+
+    // Close the custom alert
+    document.getElementById('alertClose').addEventListener('click', function () {
+        document.getElementById('customAlert').classList.add('hidden');
+    });
+</script>
+  <!-- <script>
+     document.addEventListener("DOMContentLoaded", function () {
+            // Fetch CSRF token
+      fetch("/csrf-token", {
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("csrfToken").value = data.token;
+      })
+      .catch(error => console.error("Error fetching CSRF token:", error));
+      });
+
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // CSRF Token ko form data mein add karein
+      
+
+      // Show loader
+      document.getElementById('loader').classList.remove('hidden');
+
+      // Get email fields
+      const email1 = document.getElementById('hrEmail1').value;
+      const email2 = document.getElementById('hrEmail2').value;
+      const email3 = document.getElementById('hrEmail3').value;
+      const bemail1 = document.getElementById('businessEmail1').value;
+      const bemail2 = document.getElementById('businessEmail2').value;
+      const bemail3 = document.getElementById('businessEmail3').value;
+      const address1 = document.getElementById('address1').value;
+      const address2 = document.getElementById('address2').value;
+      
+      // Create the data object containing only the email addresses
+      const data = {
+        hrEmail1: email1,
+        hrEmail2: email2,
+        hrEmail3: email3,
+        businessEmail1: bemail1,
+        businessEmail2: bemail2,
+        businessEmail3: bemail3,
+        address1: address1,
+        address2: address2
+      };
+
+      const csrfToken = document.getElementById("csrfToken").value;
+      data.append("_csrf", csrfToken);
+
+      // Send data via POST request to the API
+      fetch('http://localhost:8080/contact/submit-hr-contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          
+        },
+        withCredentials: true,
+        body: JSON.stringify(data), // Send the email data as JSON
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json(); // Parse the JSON response
+        })
+        .then(result => {
+          console.log('Success:', result);
+          // Hide loader
+          document.getElementById('loader').classList.add('hidden');
+          // Show custom alert
+          document.getElementById('alertMessage').textContent = 'Contact created successfully!';
+          document.getElementById('customAlert').classList.remove('hidden');
+          // Reset the form
+          document.getElementById('contactForm').reset();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          // Hide loader
+          document.getElementById('loader').classList.add('hidden');
+          // Show custom alert with error message
+          document.getElementById('alertMessage').textContent = 'Failed to submit emails. Please try again.';
+          document.getElementById('customAlert').classList.remove('hidden');
+        });
+    });
+
+    // Close the custom alert
+    document.getElementById('alertClose').addEventListener('click', function () {
+      document.getElementById('customAlert').classList.add('hidden');
+    });
+  </script> -->
+  <!-- <script>
+
+     // Function to check session status
+    
+
+
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the default form submission
+  
+      // Get email fields
+      const email1 = document.getElementById('hrEmail1').value;
+      const email2 = document.getElementById('hrEmail2').value;
+      const email3 = document.getElementById('hrEmail3').value;
+      const bemail1 = document.getElementById('businessEmail1').value;
+      const bemail2 = document.getElementById('businessEmail2').value;
+      const bemail3 = document.getElementById('businessEmail3').value;
+      const address1 = document.getElementById('address1').value;
+      const address2= document.getElementById('address2').value;
+  
+      // Create the data object containing only the email addresses
+      const data = {
+        hrEmail1: email1,
+        hrEmail2: email2,
+        hrEmail3: email3,
+        businessEmail1:bemail1,
+        businessEmail2:bemail2,
+        businessEmail3:bemail3,
+        address1:address1,
+        address2:address2
+      };
+  
+      // Send data via POST request to the API
+      fetch('http://localhost:8080/contact/submit-contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), // Send the email data as JSON
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json(); // Parse the JSON response
+        })
+        .then(result => {
+          console.log('Success:', result);
+          alert('created successfully!'); // Show success message
+          document.getElementById('contactForm').reset(); // Reset the form
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Failed to submit emails. Please try again.'); // Show error message
+        });
+    });
+  </script> -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tableBody = document.getElementById("table-body");
+
+    fetch("/csrf-token", {
+            credentials: 'include' // Ensure cookies are sent with the request
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Set CSRF token in the hidden input field
+            document.getElementById("csrfToken").value = data.token;
+        })
+        .catch(error => console.error("Error fetching CSRF token:", error));
+
+
+        document.getElementById('logoutButton').addEventListener('click', async function () {
+    try {
+      const _csrf = document.getElementById("csrfToken").value;
+        const response = await fetch('http://localhost:8080/api/v1/admin/logout', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': _csrf  // Add CSRF token to headers
+            },
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+         
+            window.location.href = '/admin-login.html';
+        } else {
+           
+        }
+    } catch (error) {
+        console.error('Error during logout:', error);
+    }
+    });
+    // Function to fetch and populate table data
+    function fetchData() {
+        fetch("http://localhost:8080/contact/get-contact")
+            .then((response) => response.json())
+            .then((data) => {
+                tableBody.innerHTML = ""; // Clear existing rows
+                data.data.forEach((item, index) => {
+                    const row = document.createElement("tr");
+                    row.className =
+                        "bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200";
+
+                    // Add the row number
+                    const rowNumberCell = document.createElement("td");
+                    rowNumberCell.className = "w-4 p-4";
+                    rowNumberCell.textContent = index + 1;
+                    row.appendChild(rowNumberCell);
+
+                    // Add HR Emails
+                    const hrEmailsCell = document.createElement("th");
+                    hrEmailsCell.className =
+                        "flex items-center px-6 py-4 font-medium whitespace-nowrap dark:text-white";
+                    hrEmailsCell.innerHTML = `
+                        <div class="ps-3">
+                            <div class="font-normal text-white mb-1"><i class="fa-solid fa-envelope mr-2 mt-1"></i>${item.hrEmail1 }</div>
+                            <div class="font-normal text-white mb-1"><i class="fa-solid fa-envelope mr-2 mt-1"></i>${item.hrEmail2 }</div>
+                            <div class="font-normal text-white mb-1"><i class="fa-solid fa-envelope mr-2 mt-1"></i>${item.hrEmail3 }</div>
+                        </div>`;
+                    row.appendChild(hrEmailsCell);
+
+                    // Add Business Emails
+                    const businessEmailsCell = document.createElement("td");
+                    businessEmailsCell.className = "px-6 py-4";
+                    businessEmailsCell.innerHTML = `
+                        <div class="ps-3">
+                            <div class="font-normal text-white mb-1"><i class="fa-solid fa-envelope mr-2 mt-1"></i>${item.businessEmail1 }</div>
+                            <div class="font-normal text-white mb-1"><i class="fa-solid fa-envelope mr-2 mt-1"></i>${item.businessEmail2 }</div>
+                            <div class="font-normal text-white mb-1"><i class="fa-solid fa-envelope mr-2 mt-1"></i>${item.businessEmail3 }</div>
+                        </div>`;
+                    row.appendChild(businessEmailsCell);
+
+                    // Add Address1
+                    const address1Cell = document.createElement("td");
+                    address1Cell.className = "px-6 py-4";
+                    address1Cell.innerHTML = `
+                        <div class="ps-3">
+                            <div class="font-normal text-white">${item.address1 }</div>
+                        </div>`;
+                    row.appendChild(address1Cell);
+
+                    // Add Address2
+                    const address2Cell = document.createElement("td");
+                    address2Cell.className = "px-6 py-4";
+                    address2Cell.innerHTML = `
+                        <div class="ps-3">
+                            <div class="font-normal text-white">${item.address2 }</div>
+                        </div>`;
+                    row.appendChild(address2Cell);
+
+                    // Add Actions (Delete Button)
+                    const actionsCell = document.createElement("td");
+                    actionsCell.className = "px-6 py-4";
+                    actionsCell.innerHTML = `
+                        <button class="rounded-md p-2 delete-btn" data-id="${item.id}">
+                            <i class="fa-solid fa-trash text-xl text-red-500"></i>
+                        </button>`;
+                    row.appendChild(actionsCell);
+
+                    // Append the row to the table body
+                    tableBody.appendChild(row);
+                });
+
+                // Attach event listeners to delete buttons
+                attachDeleteListeners();
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    }
+
+    // Function to attach event listeners to delete buttons
+    function attachDeleteListeners() {
+        const deleteButtons = document.querySelectorAll(".delete-btn");
+        deleteButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                const contactId = this.getAttribute("data-id");
+                deleteContact(contactId);
+            });
+        });
+    }
+
+    // Function to delete a contact
+    function deleteContact(contactId) {
+      const _csrf = document.getElementById("csrfToken").value;
+    
+            fetch(`http://localhost:8080/contact/delete-contact/${contactId}`, {
+                method: "DELETE",
+                headers: {
+                'X-CSRF-TOKEN': _csrf,  // Correctly add CSRF token inside headers
+            },
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        // Refresh the table after successful deletion
+                        fetchData();
+                        // alert("Contact deleted successfully!");
+                        document.getElementById('loader').classList.add('hidden');
+            // Show custom alert
+                document.getElementById('alertMessage').textContent = 'Contact deleted successfully!';
+                 document.getElementById('customAlert').classList.remove('hidden'); 
+                    } else {
+                      document.getElementById('loader').classList.add('hidden');
+            // Show custom alert
+            document.getElementById('alertMessage').textContent = 'Failed to delete ';
+            document.getElementById('customAlert').classList.remove('hidden');
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error deleting contact:", error);
+                    alert("An error occurred while deleting the contact.");
+                });
+        }
+    
+
+    // Initial fetch to populate the table
+    fetchData();
+});
+</script>
+  
+ 
+</body>
+</html>

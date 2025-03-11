@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Amigo Dheena" />
+    <!-- Favicon icon -->
+    <link
+      rel="icon"
+      href="assets/img/favicon.png"
+      type="image/png"
+      sizes="16x16"
+    />
+
+    <!-- Title -->
+    <title>Job Description - SKY IT Best Recruiters & IT Services</title>
+    <meta
+      name="description"
+      content="Detailed job description for current openings at SKY IT."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&amp;family=Urbanist:wght@600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Build CSS -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- End Build -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <style>
+      .job-description {
+        padding: 3rem 0; /* Added padding for better spacing */
+      }
+
+      .job-description h2 {
+        font-size: 2.8rem; /* Increased font size */
+        margin-bottom: 1.5rem;
+        color: #333;
+        text-align: left; /* Align text to the left */
+      }
+
+      .job-description h4 {
+        font-size: 1.8rem; /* Increased font size */
+        margin-bottom: 1rem;
+        color: #333;
+        text-align: left; /* Align text to the left */
+      }
+
+      .job-description ul {
+        list-style-type: disc;
+        padding-left: 2rem;
+        text-align: left; /* Align text to the left */
+      }
+
+      .job-description li {
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem; /* Increased font size */
+        color: #555;
+      }
+
+      .job-meta span {
+        display: block;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem; /* Increased font size */
+        color: #555;
+        text-align: left; /* Align text to the left */
+      }
+
+      .job-meta strong {
+        color: #333;
+      }
+
+      .template-btn {
+        margin-top: 2rem;
+      }
+
+      .job-responsibilities {
+        color: #555;
+        font-size: 1.2rem; /* Increased font size */
+        line-height: 1.8; /* Improved line spacing */
+        text-align: left; /* Align text to the left */
+      }
+
+      .job-responsibilities strong {
+        color: #333;
+      }
+      
+    </style>
+  </head>
+
+  <body>
+    <!-- Body Overlay -->
+    <div class="body-overlay"></div>
+
+    <!-- Scrolltop Button -->
+    <button class="scrolltop-btn"><i class="fa-solid fa-angle-up"></i></button>
+
+    <!-- Preloader Start -->
+    <div class="loader-wrap">
+      <div class="preloader">
+        <div id="handle-preloader" class="handle-preloader">
+          <div class="animation-preloader">
+            <div class="spinner"></div>
+            <div class="txt-loading">
+              <a href="index.html" class="logo-black"
+                ><img src="assets/img/logo.png" alt="logo" class="logo"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Main Content Wrapper Start -->
+    <div class="main-wrapper">
+      <!-- Header Area Start -->
+      <header class="header-section header-gradient">
+        <div class="topbar">
+          <div class="container">
+            <div class="row align-item-center">
+              <div class="col-md-6">
+                <div class="topbar-left"></div>
+              </div>
+              <div class="col-md-6">
+                <div class="topbar-right text-end">
+                  <a href="mailto:info@theskyit.com">
+                    <i class="fa-solid fa-envelope"> </i> info@theskyit.com</a
+                  >
+                  <a href="mailto:hr@theskyit.com"> hr@theskyit.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="navbar-container"></div>
+      </header>
+      <!-- Header Area End -->
+
+      <script>
+        fetch("navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar-container").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading navbar:", error));
+      </script>
+
+      <section class="breadcrumb-area bg-primary-gradient">
+        <div class="container">
+          <div class="breadcrumb-content text-center">
+            <h2 class="mb-3">Full Job Description</h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- Job Description Section Start -->
+      <section class="job-description ptb-120 ds-bg">
+        <div class="container">
+          <div class="row justify-content-start">
+            <div class="col-lg-10">
+              <!-- Removed the card entirely -->
+              <div id="job-content"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Job Description Section End -->
+
+      <!-- Footer Section Start -->
+      <!-- Footer Section End -->
+    </div>
+    <!-- Main Content Wrapper Ends -->
+
+    <!-- Build JS -->
+    <script src="assets/js/vendors/jquery.min.js"></script>
+    <script src="assets/js/vendors/popper.min.js"></script>
+    <script src="assets/js/vendors/bootstrap.min.js"></script>
+    <script src="assets/js/vendors/easing.min.js"></script>
+    <script src="assets/js/vendors/swiper.min.js"></script>
+    <script src="assets/js/vendors/massonry.min.js"></script>
+    <script src="assets/js/vendors/bootstrap-slider.js"></script>
+    <script src="assets/js/vendors/magnific-popup.js"></script>
+    <script src="assets/js/vendors/waypoints.js"></script>
+    <script src="assets/js/vendors/counterup.js"></script>
+    <script src="assets/js/vendors/isotop.pkgd.min.js"></script>
+    <script src="assets/js/vendors/countdown.min.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Extract all parameters
+        const jobTitle = decodeURIComponent(urlParams.get("jobTitle") || "");
+        const jobPosition = decodeURIComponent(
+          urlParams.get("jobPosition") || ""
+        );
+        const jobCategory = decodeURIComponent(
+          urlParams.get("jobCategory") || ""
+        );
+        const city = decodeURIComponent(urlParams.get("city") || "");
+        const state = decodeURIComponent(urlParams.get("state") || "");
+        const country = decodeURIComponent(urlParams.get("country") || "");
+        const experience = decodeURIComponent(
+          urlParams.get("experience") || ""
+        );
+        const minimumSalary = decodeURIComponent(
+          urlParams.get("minimumSalary") || ""
+        );
+        const maximumSalary = decodeURIComponent(
+          urlParams.get("maximumSalary") || ""
+        );
+        const customSkills = decodeURIComponent(
+          urlParams.get("customSkills") || ""
+        );
+        const jobDescription = decodeURIComponent(
+          urlParams.get("jobDescription") || ""
+        );
+        const educationalQualification = decodeURIComponent(
+          urlParams.get("educationalQualification") || ""
+        );
+
+        // Salary logic fix
+        let salaryText = "";
+        if (minimumSalary > 0 && maximumSalary > 0) {
+          salaryText = `₹${minimumSalary} - ₹${maximumSalary}`;
+        } else if (minimumSalary > 0) {
+          salaryText = `₹${minimumSalary}`;
+        } else if (maximumSalary > 0) {
+          salaryText = `₹${maximumSalary}`;
+        } else {
+          salaryText = "Not specified";
+        }
+
+        // Convert job description into bullet points
+        const descriptionPoints = jobDescription
+          .split(/\.\s+|\.<br>|\.<p>/g) // Split by periods, <br>, or <p>
+          .filter((line) => line.trim()) // Remove empty lines
+          .map((line) => `<li>${line.trim()}.</li>`)
+          .join("");
+
+        const jobContent = `
+          <h2 class="mb-3">${jobTitle}</h2>
+          
+          <div class="job-meta mb-4">
+              <span><strong>Job Department:</strong> ${jobPosition}</span>
+              <span><strong>Work Industry:</strong> ${jobCategory}</span>
+              <span><strong>Qualification:</strong> ${educationalQualification}</span>
+              <span><strong>Experience:</strong> ${experience}</span>
+              <span><strong>Salary:</strong> ${salaryText}</span>
+              <span><strong>Location:</strong> ${city}, ${state}, ${country}</span>
+              <span><strong>Skills:</strong> ${
+                customSkills || "None specified"
+              }</span>
+          </div>
+    
+          <h4 class="mb-3">Job Responsibilities</h4>
+          <div class="job-responsibilities">
+              <ul>${descriptionPoints}</ul>
+          </div>
+    
+          <div class="text-center mt-5">
+              <a href="candidate-enquiry.html?role=${encodeURIComponent(
+                jobTitle
+              )}" class="template-btn primary-btn">Apply Now</a>
+          </div>
+        `;
+
+        document.getElementById("job-content").innerHTML = jobContent;
+      });
+    </script>
+  </body>
+</html>

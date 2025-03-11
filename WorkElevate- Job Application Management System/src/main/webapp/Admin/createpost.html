@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Sidebar - Candidates</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- font awesome -->
+  <style>
+    .skill-tag {
+      display: inline-flex;
+      align-items: center;
+      background-color: #e2e8f0;
+      border-radius: 9999px;
+      padding: 4px 10px;
+      margin: 2px;
+      font-size: 14px;
+    }
+    .remove-btn {
+      margin-left: 8px;
+      cursor: pointer;
+    }
+
+    .loader {
+      border-top-color: #3498db;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #customAlert {
+      z-index: 1000;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/9ad568764d.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <div id="sidebar"  class="fixed lg:static transform -translate-x-full lg:translate-x-0 transition-transform duration-300 bg-gradient-to-t from-cyan-500 to-blue-500 text-white w-80 min-h-screen flex flex-col p-4 font-bold z-50">
+      <button class="btn block  focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-1/5 ml-3 lg:hidden" id="close-sidebar">
+        <i class="fa-solid fa-xmark "></i>
+      </button>
+      <ul class="menu text-xl">
+        <li class="mb-2"><a href="./index.html" class="hover:bg-blue-600 rounded-md p-2"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+        <hr class="my-4 w-full border-white" />
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2"  href="./candidate.html"><i class="fa-solid fa-person"></i>Candidates</a></li>
+        <li class="mb-2"><a class="hover:bg-blue-600 rounded-md p-2" href="./jobpost.html"><i class="fa-solid fa-briefcase"></i>Job Posts</a></li>
+        <li class="relative mb-2">
+          <a href="#" class="rounded-md p-2 flex items-center" id="pagesDropdownButton">
+            <i class="fa-solid fa-file-lines"></i> Pages
+          </a>
+          <ul class="absolute left-0 mt-10 w-full  text-white rounded-md  hidden" id="pagesDropdownMenu">
+            
+              <li><a href="./partner.html" class="block px-4 py-2 rounded-md">Upload Client Logo</a></li>
+              <li><a href="./hrcontact.html" class="block px-4 py-2 rounded-md">Upload Contact</a></li>
+              <!-- <li><a href="./businesscontact.html" class="block px-4 py-2 rounded-md">Buisness Contact</a></li> -->
+          </ul>
+      </li>
+      </ul>
+    </div>
+    <!-- Main Content -->
+    <div class="flex-1 w-full">
+      <!-- Navbar -->
+      <div class="navbar bg-white p-4 shadow-md">
+        <h1 class="text-xl font-bold text-center text-black hidden sm:block">Create Job Post</h1>
+        <div class="flex-1">
+          <!-- Sidebar Toggle Button for Mobile -->
+          <button id="toggle-sidebar" class="btn block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center lg:hidden w-1/5">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+        <button id="logoutButton"  class="text-white font-medium h-10 flex px-2 py-1 justify-center items-center w-20 block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-600">Logout</button>
+      </div>
+
+      <!-- Page Content -->
+      <form id="job-post-form">
+        <input type="hidden" name="_csrf" id="csrfToken" />
+        <div class="p-6">
+          <div class="bg-white shadow-md rounded-xl w-full max-w-full mx-auto">
+            <div class="p-3 rounded-t-xl flex justify-between items-center gap-4">
+              <p class="font-bold text-black text-xl">General Information</p>
+            </div>
+            <hr class="my-4 mx-auto border-t-2 border-gray-300"/>
+            <div class="p-4">
+              <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Job Title -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm text-black font-bold">Job Title
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Job Title"
+                    id="jobTitle"
+                    name="jobTitle"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm text-black font-bold">Work Industry
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Work Industry "
+                    id="jobCategory"
+                    name="jobCategory"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+               
+              </div>
+      
+              <!-- Job Position and Qualification -->
+              <div class="flex flex-col lg:flex-row gap-6 mt-3">
+                <!-- Job Position -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm text-black font-bold">Department
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter Department"
+                    id="jobPosition"
+                    name="jobPosition"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+      
+                <!-- Qualification -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm text-black font-bold">Qualification
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Qualification"
+                    id="qualification"
+                    name="requiredQualification"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+              </div>
+      
+              <!-- Job Description -->
+              <div class="mt-3">
+                <label class="mb-2 text-sm text-black font-bold">Job Description
+                  <span class="text-red-1000">*</span>
+                </label>
+                <textarea name="jobDescription" id="editor" class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none w-full" rows="4"></textarea>
+              </div>
+              
+              <!-- Job Experience -->
+              <div class="flex flex-col lg:flex-row gap-6 mt-3">
+                <!-- Job Experience -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm text-black font-bold">Job Experience
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Job Experience"
+                    id="minimumExperience"
+                    name="experience"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+
+                <!-- Skills -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm text-black font-bold">Skills</label>
+                  <div class="flex items-center w-full">
+                    <input
+                      id="skillsInput"
+                      type="text"
+                      name="customSkills"
+                      placeholder="Enter skills"
+                      class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none flex-grow"
+                    />
+                    <button id="addSkillButton" class="ml-2 block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                      Add Skills
+                    </button>
+                  </div>
+                  <div id="skillsList" class="mt-4"></div>
+                </div>
+                
+              </div>
+              <div>
+                <div class="flex flex-col w-full mt-3">
+                  <label  class="mb-2 text-sm text-black font-bold">Urgent Requirement
+                  </label>
+                  <select
+                    id="urgentRequirement"
+                    name="urgentRequirement"
+                    class="border-none w-1/2 rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  >
+                    <option value="">Select Requirement</option>
+                    <option value="Yes">Yes</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Salary -->
+        <div class="p-6">
+          <div class="bg-white shadow-md rounded-xl w-full max-w-6xl mx-auto">
+            <div class="p-3 rounded-t-xl flex justify-between items-center gap-4">
+              <p class="font-bold text-xl text-black">Salary</p>
+            </div>
+            <hr class="my-4 mx-auto border-t-2 border-gray-300"/>
+            <div class="p-4">
+              <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Minimum Salary -->
+                <div class="flex flex-col w-full mt-3">
+                    <label class="mb-2 text-sm text-black font-bold">Minimum Salary</label>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            placeholder="Enter Minimum Salary"
+                            id="minSalary"
+                            name="minimumSalary"
+                            class="border-none  w-full  rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none pl-8"
+                        />
+                        <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500">₹</span>
+                    </div>
+                </div>
+            
+                <!-- Maximum Salary -->
+                <div class="flex flex-col w-full mt-3">
+                    <label class="mb-2 text-sm text-black font-bold">Maximum Salary</label>
+                    <div class="relative ">
+                        <input
+                            type="text"
+                            placeholder="Enter Maximum Salary"
+                            id="maxSalary"
+                            name="maximumSalary"
+                            class="border-none w-full rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none pl-8"
+                        />
+                        <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500">₹</span>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+      
+        <!-- Job Location -->
+        <div class="p-6">
+          <div class="bg-white shadow-md rounded-xl w-full max-w-6xl mx-auto">
+            <div class="p-3 rounded-t-xl flex justify-between items-center gap-4">
+              <p class="font-bold text-xl text-black">Job Location</p>
+            </div>
+            <hr class="my-4 mx-auto border-t-2 border-gray-300"/>
+            <div class="p-4">
+              <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Country Field -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm text-black font-bold">Country
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Country"
+                    id="country"
+                    name="country"
+                    required
+
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+      
+                <!-- State Field -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm text-black font-bold">State
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="State"
+                    id="state"
+                    name="state"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+      
+                <!-- City Field -->
+                <div class="flex flex-col w-full mt-3">
+                  <label class="mb-2 text-sm text-black font-bold">City
+                    <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="City"
+                    id="city"
+                    name="city"
+                    required
+                    class="border-none rounded-lg px-4 py-3 text-sm bg-gray-100 focus:outline-none"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Create Job Button -->
+        <div class="flex justify-center mb-10">
+          <input
+            type="submit"
+            value="Create Job Post"
+            class="block text-white focus:outline-none bg-gradient-to-r from-cyan-500 to-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          />
+        </div>
+      
+      </form>
+    </div>
+  </div>
+
+  <div id="loader" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+  </div>
+
+  <!-- Custom Alert -->
+  <div id="customAlert" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <p id="alertMessage" class="text-lg"></p>
+        <div class="flex justify-center mt-4">
+            <button id="alertClose" class="bg-blue-500 text-white px-4 py-2 rounded">Close</button>
+        </div>
+    </div>
+</div>
+
+  <script src="./dashboard.js"></script>
+<script src="./candidate.js"></script>
+<script src="./createpost.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+        fetch("/csrf-token", {
+          credentials: "include", // Ensure cookies are sent with the request
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Set CSRF token in the hidden input field
+            document.getElementById("csrfToken").value = data.token;
+          })
+          .catch((error) => console.error("Error fetching CSRF token:", error));
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get("role");
+        
+          
+
+
+        if (role) {
+          document.getElementById("role").value = role;
+        }
+      });
+// Function to check session status
+async function checkSession() {
+      try {
+        const response = await axios.get('http://localhost:8080/api/v1/admin/check-session', {
+          withCredentials: true // Include cookies in the request
+        });
+        console.log('Session check response:', response.data);
+        if (!response.data.success) {
+          // If session is invalid, redirect to login page
+          window.location.href = '/admin-login.html';
+        }
+      } catch (error) {
+        
+        console.error('Session check failed:', error);
+        window.location.href = '/admin-login.html';
+      }
+    }
+
+    // Call the function when the page loads
+    //checkSession();
+    setInterval(checkSession, 600);
+
+    document.getElementById('logoutButton').addEventListener('click', async function () {
+    try {
+      const _csrf = document.getElementById("csrfToken").value;
+        const response = await fetch('http://localhost:8080/api/v1/admin/logout', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': _csrf  // Add CSRF token to headers
+            },
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+         
+            window.location.href = '/admin-login.html';
+        } else {
+           
+        }
+    } catch (error) {
+        console.error('Error during logout:', error);
+    }
+    });
+
+
+    // Your existing JavaScript code for CKEditor and form submission
+    let editor;
+    document.addEventListener('DOMContentLoaded', function () {
+      ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(newEditor => {
+          editor = newEditor;
+        })
+        .catch(error => {
+          console.error('Error initializing CKEditor:', error);
+        });
+    });
+
+    // document.getElementById('loader').classList.remove('hidden');
+    // Select elements
+    const addSkillButton = document.getElementById('addSkillButton');
+    const skillsInput = document.getElementById('skillsInput');
+    const skillsList = document.getElementById('skillsList');
+
+    // Add event listener to the Add Skills button
+    addSkillButton.addEventListener('click', () => {
+      const skill = skillsInput.value.trim();
+
+      // Ensure the input is not empty
+      if (skill !== '') {
+        // Create a new div for the skill tag
+        const skillTag = document.createElement('div');
+        skillTag.classList.add('skill-tag');
+        skillTag.innerHTML = `${skill} <span class="remove-btn" onclick="removeSkill(this)"><i class="fa-solid fa-xmark "></i></span>`;
+
+        // Append the skill tag to the list
+        skillsList.appendChild(skillTag);
+
+        // Clear the input field after adding the skill
+        skillsInput.value = '';
+      }
+    });
+
+    // Function to remove a skill
+    function removeSkill(element) {
+      const skillTag = element.parentElement;
+      skillTag.remove();
+    }
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Collect all the form data
+      const jobData = {
+        jobTitle: document.getElementById('jobTitle').value,
+        jobCategory: document.getElementById('jobCategory').value,
+        jobPosition: document.getElementById('jobPosition').value,
+        requiredQualification: document.getElementById('qualification').value,
+        jobDescription: editor.getData(), // CKEditor value
+        minimumExperience: document.getElementById('minimumExperience').value,
+        customSkills: getSkills(),  // Get the list of skills
+        minimumSalary: document.getElementById('minSalary').value,
+        maximumSalary: document.getElementById('maxSalary').value,
+        country: document.getElementById('country').value,
+        state: document.getElementById('state').value,
+        city: document.getElementById('city').value,
+        urgentRequirement:document.getElementById("urgentRequirement").value,
+        //customjobCategory:document.getElementById("customJobCategory").value,
+        _csrf: document.getElementById("csrfToken").value
+        
+
+      };
+   
+      const apiUrl = "http://localhost:8080/api/v1/job/jobpost-submit";
+
+  
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',  
+        },
+        credentials: 'include',
+        body: JSON.stringify(jobData) 
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(err => { throw err });
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Success:', data);  
+        // alert(`${JSON.stringify(data.message)}`);
+        document.getElementById('loader').classList.add('hidden');
+          // Show custom alert
+          document.getElementById('alertMessage').textContent = 'Job created successfully!';
+          document.getElementById('customAlert').classList.remove('hidden');
+      })
+      .catch(error => {
+          document.getElementById('loader').classList.add('hidden');
+          // Show custom alert with error message
+          document.getElementById('alertMessage').textContent = 'Failed to Create Job. Please try again.';
+          document.getElementById('customAlert').classList.remove('hidden');
+      });
+    });
+  
+
+    function getSkills() {
+      let skills = [];
+      const skillElements = document.querySelectorAll('.skill-tag');
+      skillElements.forEach(tag => {
+        skills.push(tag.textContent.trim());
+      });
+      return skills;
+    }
+
+    document.getElementById('alertClose').addEventListener('click', function () {
+        document.getElementById('customAlert').classList.add('hidden');
+    });
+  </script>
+
+
+</body>
+</html>
